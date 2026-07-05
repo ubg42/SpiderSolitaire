@@ -1,0 +1,787 @@
+<!DOCTYPE html><html lang="en"><head><link rel="preload" href="/images/site-backgrounds/leather.png" as="image"><link rel="stylesheet" href="/stylesheets/vendor/bootstrap.4.4.1.min.css" media="screen"><script src="/javascripts/vendor/jquery.3.4.1.min.js"></script><script src="/javascripts/vendor/popper.1.16.0.min.js"></script><script src="/javascripts/vendor/bootstrap.4.4.1.min.js"></script><script src="/javascripts/vendor/gsap.3.11.5.min.js"></script><script src="/javascripts/vendor/sshuffle.js?version=1782930872000"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/philfung/add-to-homescreen@3.4/dist/add-to-homescreen.min.css"><script src="https://cdn.jsdelivr.net/gh/philfung/add-to-homescreen@3.4/dist/add-to-homescreen.min.js"></script><script>var stripePublishableKey = "pk_live_51HX519G4JB9Cy2RHAQ4t7dI4ny6eEEWiWtiCoyYUVel3WNPq65bd6SOWdNVgQvnDsnpMlQ9wB6204wiOhcx4rXmp00kSTe86F0";
+var consoleErrors = [];
+var errorCounter = 0;
+var fileFilterRegex = /^https?:\/\/solitaired|^https?:\/\/local|^webpack:/
+var ignoredErrorMessageRegex = /Script error\.|ResizeObserver|Can't find variable: Buffer|The operation is insecure/
+function logError(e) {
+  var msg = e.error && e.error.message
+  var stack = e.error && e.error.stack
+  try {
+    consoleErrors.push([e.message, msg, stack, e.lineno, e.timeStamp]);
+    //- If there is a filename associated with the error event only log Solitaired errors.
+    if (errorCounter < 5 && !ignoredErrorMessageRegex.test(e.message) && (!e.filename || fileFilterRegex.test(e.filename))) {
+      //- We don't use a library function here in case an error happens very early in the javascript.
+    const payload = {
+      eventMessage: e.message,
+      errorMessage: msg,
+      stackStrace: stack,
+      lineNumber: e.lineno,
+      colNumber: e.colno,
+      filename: e.filename
+      };
+      let post = JSON.stringify(payload)
+
+      const url = "/stream/record-error"
+      let xhr = new XMLHttpRequest()
+
+      xhr.open('POST', url, true)
+      xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+      xhr.send(post);
+      errorCounter++;
+    }
+
+  } catch (e) {
+    console.log("ERROR HANDLER ERROR", e)
+  }
+};
+window.addEventListener("error", logError);
+</script><title>Spider Solitaire - Play Online & 100% Free | Solitaired.com</title><script>var gtagPayload = {
+  'user_properties': {
+    role: "guest"
+  }
+};</script><script>//- Add the abTest to the gtagPayload
+gtagPayload["user_properties"].abTest = "NO_TEST_2026_02_11";
+gtagPayload["user_properties"].abTestBucket = "";
+var abTest = {"digits":89,"isNewUser":false,"run":false,"name":"NO_TEST_2026_02_11","funnel":{"step_1":"none","step_2":"none","step_3":"none"}};</script><script>window.SOLITAIRED_GLOBAL = {
+  "newUser": false,
+  "role": false,
+  "seedStats": null,
+  "isSgg": false,
+  "todayGamesPlayed": "0",
+  "registrationModalName": "",
+  "vapidPublicKey": "BIXwFxyg7ZAxJH8tRsooi8lVGbRu43a95zn99pcRVLsufP3ebjlbPorF94-fL2xjey8UWm8omoEKpWzdhrVIjtE",
+  "isEdition": false,
+  "cdn": "https://solitaired.com/custom-card-images",
+  "acquisitionDate": "2026-02-10",
+  "pageviews": 5,
+  "willReadFrequently": false,
+  "currentHoliday": null,
+  "isPwa": false,
+  "isAndroid": false,
+  "lang": "en",
+  "country": "AU",
+  "postal": "2076",
+  "openPass": {
+    "clientId": "0ca4ac642cbd4db0a86cc2373592443b"
+  },
+  "showRegistrationModal": false
+};
+window.SOLITAIRED_GLOBAL.labels = {"Four Suits":"Four Suits","One Suit":"One Suit","Two Suits":"Two Suits","about":"About us","account":"Account","account_change_username":"Change username","account_edit_avatar":"Edit Avatar","account_edit_win_percentage":"Edit win %","add_to_homescreen_cancel":"Cancel","addiction":"Addiction","addiction_solitaire":"Addiction Solitaire","ai_best_moves":"AI best moves","alaska":"Alaska","all_games":"All Games","all_shapes":"All Shapes","bakers_game":"Baker's Game","best_score":"Best Score","best_time":"Best Time","bookmark_us":"Bookmark us","canfield":"Canfield","category_aces_and_kings":"Aces and Kings","category_all_other":"All Other","category_bristol":"Bristol","category_busy_aces":"Busy Aces","category_canfield":"Canfield","category_castle":"Castle","category_crescent":"Crescent","category_cruel":"Cruel","category_flower_garden":"Flower Garden","category_forty_thieves":"Forty Thieves","category_four_seasons":"Four Seasons","category_freecell":"FreeCell","category_golf":"Golf","category_king_albert":"King Albert","category_la_belle_lucie":"La Belle Lucie","category_mahjong":"Mahjong","category_miss_milligan":"Miss Milligan","category_needle":"Needle","category_other_card":"Other Card","category_pair_set_removal":"Pair & Set Removal","category_pyramid":"Pyramid","category_signora":"Signora","category_sir_tommy":"Sir Tommy","category_sixes_and_sevens":"Sixes and Sevens","category_solitaire":"Solitaire","category_spider":"Spider","category_thirty_six":"Thirty Six","category_tournament":"Tournament","category_traditional_card":"Traditional Card Games","category_trick_taking":"Trick Taking","category_tripeaks":"TriPeaks","category_trusty_twelve":"Trusty Twelve","category_wave_motion":"Wave Motion","category_word":"Word","category_yukon":"Yukon","challenges":"Challenges","change_design":"Change Design","classic_freecell":"Classic FreeCell","classic_pyramid":"Classic Pyramid","classic_tripeaks":"Classic TriPeaks","collectible_deck_abyss_comics":"Abyss","collectible_deck_animal_kingdom":"Animal Kingdom","collectible_deck_confections":"Confections","collectible_deck_cretaceous":"Dinosaur Land","collectible_deck_dreamscape":"Dreamscape","collectible_deck_elemental_sky":"Elemental Sky","collectible_deck_firehouse":"Firehouse","collectible_deck_forest":"Gentle Forest","collectible_deck_garden":"Garden Fun","collectible_deck_microscopic_animals":"Microscopic Animals","collectible_deck_mythos":"Mythology","collectible_deck_pleistoscene_pop":"Pleistocene Pop","collectible_deck_plushies":"Plushies","collectible_deck_robotic_gods":"Robotic Gods","collectible_deck_seasons_turn":"Turn of Seasons","collectible_deck_speakeasy":"Roaring Twenties","collectible_deck_sugar_rush":"Sugar Rush","congrats":"Congrats!","congrats_add_name":"Add name","congrats_add_your_name":"Add your name","congrats_adjusted_time":"Adjusted Time","congrats_adjusted_time_note":"Your adjusted time includes a 20 second penalty for each reshuffle and each hint used.","congrats_badge_earned":"You've earned the {badge} badge!","congrats_badge_title_placeholder":"Badge Title","congrats_best_score_note":"We only show your best score above. On this game, you scored {score} ({time} time and {moves} moves).","congrats_card_back_alt":"Card Back","congrats_card_name":"{rank} of {suit}","congrats_card_rank_jack":"Jack","congrats_card_rank_king":"King","congrats_card_rank_queen":"Queen","congrats_card_suit_clubs":"Clubs","congrats_card_suit_diamonds":"Diamonds","congrats_card_suit_hearts":"Hearts","congrats_card_suit_spades":"Spades","congrats_challenge_completed":"Completed!","congrats_challenge_name_placeholder":"Challenge Name","congrats_challenge_progress":"Challenge Progress","congrats_challenge_progress_title":"{challenge} Progress","congrats_claim_old_trophies":"Claim your old trophies before they're lost","congrats_coins_earned":"Coins Earned","congrats_collectible_card_plural":"cards","congrats_collectible_card_singular":"card","congrats_collectible_deck_completed":"You've completed {deckLink}!","congrats_collectible_deck_link":"the {deck} deck","congrats_collectible_earned":"You just earned a {card}!","congrats_collectible_more_cards":"{count} more {cardLabel} to unlock the {deck} deck!","congrats_congratulations":"Congratulations!","congrats_continue_playing":"Continue Playing {game}","congrats_daily_journey":"Daily Journey","congrats_demo":"Demo","congrats_edit":"Edit","congrats_fastest_time":"Fastest Time","congrats_fewest_moves":"Fewest Moves","congrats_game_stats":"{game} Stats","congrats_games_played_today":"Games Played Today","congrats_games_remaining":"{remaining} games remaining","congrats_games_won":"{won} / {required} games won","congrats_games_won_today":"Games Won Today","congrats_hints":"Hints","congrats_hour":"hour","congrats_hours":"hours","congrats_in_month":"IN {month}","congrats_in_month_lower":"in {month}","congrats_leaderboard":"Leaderboard","congrats_level":"LEVEL {tier}","congrats_lifetime":"Lifetime","congrats_mahjong_shape_bird":"Bird","congrats_mahjong_shape_fire":"Fire","congrats_mahjong_shape_fish":"Fish","congrats_mahjong_shape_gate":"Gate","congrats_mahjong_shape_pyramid":"Pyramid","congrats_mahjong_shape_rabbit":"Rabbit","congrats_mahjong_shape_shell":"Shell","congrats_mahjong_shape_snake":"Snake","congrats_mahjong_shape_triangle":"Triangle","congrats_mahjong_shape_turtle":"Turtle","congrats_minute_short":"min","congrats_minutes_short":"mins","congrats_next_trending_game":"Next Trending Game","congrats_next_tripeaks_variation":"Next Tripeaks variation:","congrats_no_games_won":"No games have been won yet!","congrats_no_high_scores":"No high scores yet. Be the first to win!","congrats_no_more_plays":"Looks like there are no more plays.","congrats_offline_playing":"You appear to be playing offline.","congrats_offline_stats_update":"Your stats will be updated automatically after reconnecting.","congrats_one_win_to_next_trophy":"1 win to next trophy!","congrats_personal_best":"Personal Best","congrats_play_again_question":"Play again?","congrats_play_game":"Play {game}","congrats_play_multiplayer_again":"Play Multiplayer Again","congrats_play_next_game":"Play Next Game","congrats_play_single_player":"Play Single Player","congrats_random_game":"Random Game","congrats_replay_same_game":"Replay same game","congrats_reshuffles":"Reshuffles","congrats_same_game":"Same Game","congrats_save_trophies_lifetime":"Save your trophies for life","congrats_save_trophies_message":"Save all of your trophies for life.","congrats_score":"Score","congrats_scoring":"Scoring","congrats_scoring_tooltip":"Scores are calculated by adding the number of seconds to the number of moves made in a game. Lower scores are better.","congrats_see_all_stats":"See All Stats","congrats_start_new_game":"Start a New Game","congrats_time":"Time","congrats_today_game_stats":"Today's {game} Stats","congrats_top_scorers":"Top scorers","congrats_total_coins":"Total Coins","congrats_track_performance_message":"Track your win rate and scores over time, to see how you've improved.","congrats_trophies_reset_warning":"Trophies reset in {hours} {hourLabel} & {minutes} {minuteLabel}. {link}","congrats_trophy_count_reset":"The monthly trophy count just reset. {link}","congrats_trophy_earned":"{trophy} earned!","congrats_trophy_levels":"Trophy Levels","congrats_try_all_shapes":"Try all of our shapes","congrats_view_badge":"View badge","congrats_view_performance":"View your performance over time","congrats_view_performance_free":"View your performance over time (free)","congrats_win_percentage":"Win %","congrats_winnable":"Winnable","congrats_wins_to_next_trophy":"{count} wins to next trophy!","congrats_won":"You won!","congrats_won_label":"Won","congrats_won_total":"{won} won / {started} total","congrats_you_beat":"You beat {player}!","congrats_you_earned_coins":"You earned {amount} {coin}","congrats_you_placed":"You placed #{rank} of {total}!","contact_modal_account_page":"account page","contact_modal_ads_covering_intro":"We work with a company called Confiant to help us with poor quality ads.","contact_modal_ads_covering_step_page":"First, make sure you are on the page where the ad is overlapping. Then click the Confiant button below.","contact_modal_ads_covering_step_select":"This popup will close, and you will need to select the ad that is causing the problem.","contact_modal_ads_covering_title":"Ads covering the game","contact_modal_ads_slow_intro":"We're sorry our advertising is impacting your gaming experience negatively. If you believe it is a particular ad, you can","contact_modal_ads_slow_suffix":"to report it. If it is something else,","contact_modal_ads_slow_title":"Ads slowing or freezing down game","contact_modal_ai_from_knowledge_base":"From our knowledge base:","contact_modal_billing_dashboard":"billing dashboard","contact_modal_click_here":"click here","contact_modal_close":"Close","contact_modal_customize_intro":"If the design of the card deck isn't to your liking, you can change the design.","contact_modal_customize_step_change_design":"Click on the \"Change Design\" option.","contact_modal_customize_step_select":"Select your desired card design.","contact_modal_customize_step_settings":"Click the green Settings button in our game menu.","contact_modal_customize_title":"Change my card design","contact_modal_deletion_intro":"We respect your privacy. You can delete your account at any time:","contact_modal_deletion_step_deleted":"Any profile information and stats will also be deleted.","contact_modal_deletion_step_find":"Find the Delete account option on your","contact_modal_deletion_step_sorry":"We are sorry to see you go!","contact_modal_describe_issue":"Please describe your issue below.","contact_modal_description_label":"Description","contact_modal_disable_autofinish_step_button":"A button will appear that will let you complete the game from any point thereafter.","contact_modal_disable_autofinish_step_disable":"If you do not want the game to automatically complete once the tableau is fully revealed, you can go to Settings > Disable Autocomplete.","contact_modal_disable_autofinish_title":"Disable Automatic Finish","contact_modal_edit_personal_stats":"Edit Personal Stats","contact_modal_email_label":"Your email address","contact_modal_enable_autoplay_step_disable":"If you would like to disable the ability to click and move cards, you can go to Settings > Disable Autoplay.","contact_modal_enable_autoplay_step_enable":"If you are unable to move cards without dragging them manually, you may need to go to Settings > Enable Autoplay.","contact_modal_enable_autoplay_title":"Enable Autoplay","contact_modal_fast_times_step_bug":"If you find a bug or way of cheating to get a fast time,","contact_modal_fast_times_step_memorize":"A lot of players play a game multiple times to memorize the moves. We don't stop them from doing it because we figure they are trying to just test their skills, and it is a feature any player can enjoy.","contact_modal_game_freezing_intro":"It is possible the game is having issues due to a bad ad showing up on your screen. If this is happening currently, please","contact_modal_game_freezing_suffix":"and click on the ad.","contact_modal_game_freezing_title":"Game slow / Freezing","contact_modal_game_winnable_body":"If a game is listed under winnable, it means someone on our site has played that specific game and won. It doesn't necessarily mean it is easy to win. If you come across a winnable game that you feel like you can't beat, go to New Game > Restart Current Game and then send us the URL. We can always look it up.","contact_modal_intro":"Your feedback is incredibly important to us. Our goal is to create one of the best casual gaming platforms on the internet, and we can't do it without your feedback.","contact_modal_leave_challenge_step_menu":"Open the New Game menu and click the red leave button beneath the active challenge.","contact_modal_leave_challenge_step_settings":"Open Settings and use the red leave row under Change Design to restore the original theme.","contact_modal_login_step_click":"Click \"Login\" at the top right of our page after closing this popup.","contact_modal_login_step_credentials":"Enter in your credentials.","contact_modal_login_step_register":"If you do not have an account, click the register link at the bottom of the login popup.","contact_modal_login_title":"To login:","contact_modal_name_label":"Your name","contact_modal_register_step_link":"Click the register link at the bottom of the login popup.","contact_modal_register_title":"To register and appear on the leaderboard:","contact_modal_remove_holiday_step_disable":"To remove these themes, click on our Settings button and then disable the Holiday Themes setting.","contact_modal_remove_holiday_step_us":"For US users, we sometimes show different holiday themes.","contact_modal_report_ad":"Report an ad to Confiant","contact_modal_select_issue":"Select your issue:","contact_modal_select_other_contact_us":"please select \"Other\" from the help topics above and contact us","contact_modal_send":"Send","contact_modal_send_anyway":"This didn't help, send my email","contact_modal_send_email_below":"send us an email below","contact_modal_signature":"Warmly, Neal & Darshan","contact_modal_stats_intro":"If you have been playing for a while and your stats have disappeared, it may be because you have been logged out. You can log back in as follows:","contact_modal_stats_step_contact":"If you still have issues,","contact_modal_subscription_intro":"Modifying your subscription is simple: please go to our","contact_modal_subscription_suffix":"and you will be able to cancel or update your subscription.","contact_modal_update_win_rate_intro":"If you think your win rate is incorrect, please go to","contact_modal_update_win_rate_middle":"and scroll down to the","contact_modal_update_win_rate_suffix":"section. There, you can choose your game and make an adjustment.","contact_modal_video_ad_help":"If the ad that is causing the problem is a video ad, we are unable to capture it using the tool above. If that doesn't resolve the issue,","contact_modal_wrong_username_intro":"If you are seeing the wrong username, please check the following:","contact_modal_wrong_username_step_contact":"If that doesn't bring up the correct username,","contact_modal_wrong_username_step_email":"Click on your username in the top right. You'll see the email associated with that username.","contact_modal_wrong_username_step_logout":"If you have a different email you also use, please log out and try to log in with that email.","contact_page_email_sent":"Email sent. Redirecting you to the homepage...","contact_page_meta_description":"Contact Us","contact_page_title":"Contact us | Solitaired.com","contact_topic_ads_covering":"Ads covering screen","contact_topic_ads_slow":"Ads slowing down / freezing game","contact_topic_customize":"Change card design","contact_topic_deletion":"Delete my account","contact_topic_disable_autofinish":"Game is finishing early","contact_topic_enable_autoplay":"Clicks not working","contact_topic_fast_times":"Fast leaderboard times","contact_topic_game_freezing":"Game is freezing / slow","contact_topic_game_loading":"Game not loading properly","contact_topic_game_winnable":"Game is not winnable","contact_topic_hints":"Hints not working","contact_topic_leave_challenge":"Leave challenge and get original theme back","contact_topic_login":"How to login","contact_topic_other":"Other","contact_topic_register":"How to register and appear on leaderboard","contact_topic_remove_holiday":"Remove holiday themes","contact_topic_stats":"Stats have disappeared","contact_topic_subscription_cancel":"Cancel or update subscription","contact_topic_update_win_rate":"Update incorrect win rates","contact_topic_wrong_username":"Wrong username","contact_us":"Contact us","cookie_policy":"Cookie policy","crescent":"Crescent","cribbage_avg_crib_score":"Avg Crib Score","cribbage_avg_hand_score":"Avg Hand Score","cribbage_avg_pegging_score":"Avg Pegging Score","cribbage_choose_difficulty":"Choose a difficulty level","cribbage_close":"Close","cribbage_daily_play_streak":"Daily Play Streak","cribbage_discard_analyzer":"Discard analyzer","cribbage_easy":"Easy","cribbage_games_played":"Games Played","cribbage_losses":"Losses","cribbage_pro":"Pro","cribbage_reset_statistics":"Reset Statistics","cribbage_skunk_wins":"Skunk Wins","cribbage_standard":"Standard","cribbage_start_game":"Start a game","cribbage_total":"Total","cribbage_tutorial":"Tutorial","cribbage_win_percentage":"Win Percentage","cribbage_wins":"Wins","customize":"Change Design","deals_left":"Deals Left","diamond":"Diamond","difficulty":"Difficulty","disable":"Disable","do_not_sell":"Do not sell my info","earn_coins":"Earn Coins","easy_freecell":"Easy FreeCell","easy_shuffle":"Easy Shuffle","eight_off":"Eight Off","eighty_thieves":"Eighty Thieves","five_bridges":"Five Bridges","forty_thieves":"Forty Thieves","fourpeaks":"Fourpeaks","free_games":"Free Games","free_games_card_tile_dice":"Card, Tile, & Dice games","free_games_explore":"Explore our library of games and sort by name or category to find your next favorite.","free_games_filter_by_category":"Filter by category","free_games_filter_by_name":"Filter by game name","free_games_meta_description":"Play over 500 of the best free online games.","free_games_meta_title":"Free games - Play online now","free_games_most_popular":"Most Popular","free_games_solitaire_games":"Solitaire games","free_games_start_typing":"Start typing a game name","free_games_table_all_categories":"All categories","free_games_table_category":"Category","free_games_table_description":"Description","free_games_table_game_name":"Game name","free_games_table_sort_by_category":"Sort by category","free_games_table_sort_by_name":"Sort by game name","free_games_word_games":"Word games","freecell":"FreeCell","fullscreen":"Fullscreen","game_of_the_day":"Game of the Day","game_score":"Game Score","golf":"Golf","handmode_left":"Left hand mode","handmode_right":"Right hand mode","handmode_toggle":"Toggle left/right","hard_shuffle":"Hard Shuffle","headline_freecell":"FreeCell","headline_gin-rummy":"Gin Rummy","headline_klondike-turn-1":"Solitaire","headline_klondike-turn-3":"Solitaire Turn 3","headline_klondike_klondike-turn-1":"Klondike Solitaire","headline_klondike_klondike-turn-3":"Klondike Turn 3","headline_klondike_solitaire":"Klondike Solitaire","headline_mahjong":"Mahjong","headline_mahjong_solitaire":"Mahjong Solitaire","headline_pyramid":"Pyramid Solitaire","headline_rummy":"Rummy","headline_spider-four-suits":"Spider Solitaire","headline_spider-one-suit":"Spider Solitaire","headline_spider-two-suits":"Spider Solitaire","headline_tripeaks":"Tripeaks Solitaire","headline_yahtzee":"Yahtzee","hide_labels":"Hide labels","hint":"Hint","hole_in_one":"Hole in One","home_tagline":"Play solitaire for free!","is_solvable":"Solvable?","josephine":"Josephine","keep_playing":"Keep Playing","klondike":"Klondike","klondike_turn_1":"Turn 1","klondike_turn_3":"Turn 3","lang_cs":"Čeština","lang_da":"Dansk","lang_de":"Deutsch","lang_el":"Ελληνικά","lang_en":"English","lang_es":"Español","lang_fi":"Finnish","lang_fr":"Français","lang_hi":"हिन्दी","lang_hu":"Magyar","lang_it":"Italiano","lang_ja":"日本語","lang_ko":"한국어","lang_nl":"Nederlands","lang_no":"Norsk","lang_pl":"Polski","lang_pt":"Português","lang_ro":"Română","lang_sk":"Slovenčina","lang_sr":"Srpski","lang_sv":"Svenska","lang_tr":"Türkçe","las_vegas":"Las Vegas","las_vegas_pyramid":"Las Vegas Pyramid","las_vegas_start_cost":"Each game costs 52 coins ({coin}) to play.","las_vegas_start_daily":"You receive 200 {coin} each day you play.","las_vegas_start_earn":"Earn 5 {coin} for every card you move to the foundation.","las_vegas_start_pass_limit_plural":"You are only allowed {count} passes through the deck.","las_vegas_start_pass_limit_singular":"You are only allowed 1 pass through the deck.","las_vegas_start_play_now":"Play now!","las_vegas_start_title_turn_1":"Let's Play Las Vegas Solitaire!","las_vegas_start_title_turn_3":"Let's Play Las Vegas Turn 3!","las_vegas_start_try_turn3":"New: Try Las Vegas Turn 3!","las_vegas_tripeaks":"Las Vegas TriPeaks","las_vegas_turn_3":"Las Vegas Turn 3","login":"Login","logout":"Logout","matches_available":"Matches Available","medium_shuffle":"Medium Shuffle","more":"More","more_solitaire_games":"More Solitaire Games","moves":"Moves","multiplayer":"Multiplayer","nav_blog":"Blog","nav_bridge":"Bridge","nav_card_games":"Card Games","nav_cribbage":"Cribbage","nav_euchre":"Euchre","nav_freecell":"FreeCell","nav_gin_rummy":"Gin Rummy","nav_hearts":"Hearts","nav_how_to_play_guides":"How to Play & Strategy Guides","nav_klondike_solitaire":"Klondike","nav_mahjong":"Mahjong","nav_pyramid_solitaire":"Pyramid","nav_resources":"Resources","nav_rummy":"Rummy","nav_solitaire":"Solitaire","nav_spades":"Spades","nav_spider_solitaire":"Spider Solitaire","nav_tripeaks_solitaire":"TriPeaks","nav_whist":"Whist","nav_word_games":"Word Games","nav_yahtzee":"Yahtzee","new_badge":"new","new_game":"New game","new_game_lasvegas":"Las Vegas Solitaire (Turn 1 & 3)","new_game_random":"Random shuffle","new_game_restart":"Restart current game","new_game_winnable":"Winnable Only","now_playing":"playing","options":"Options","out_of_moves_no_shuffles":"Looks like there are no more available moves and no shuffles left. Would you like to play again?","out_of_moves_title":"Out of moves!","passthrus":"Passthrus","passthrus_left":"Passthrus Left","privacy_policy":"Privacy policy","pyramid":"Pyramid","rank":"Rank","recent_games":"Recent Games","redo":"Redo","register":"Sign up","report_bug":"Report bug","reshuffle_tiles":"Reshuffle tiles","rules":"Rules","russian":"Russian","save_game":"Save","scorpion":"Scorpion","scroll_to_top":"Scroll To Top","settings":"Settings","settings_animations":"Foundation splash","settings_autocomplete":"Auto finish","settings_autohint":"Auto hints","settings_autoplay":"Autoplay","settings_descriptions_animations":"Animate foundation moves.","settings_descriptions_autocomplete":"Finish game once tableau is revealed.","settings_descriptions_autohint":"Automatically get hints if you're stuck.","settings_descriptions_autoplay":"Moves cards just by clicking.","settings_descriptions_handmode":"Flip right or left handedness","settings_descriptions_holidays":"Card backs change based on certain holidays","settings_descriptions_hotkeys":"Use keyboard for faster play.","settings_descriptions_sounds":"Play sound effects during game.","settings_descriptions_tableau_magnification":"See cards more easily on long tableau piles.","settings_handmode":"Toggle Hand","settings_holidays":"Holiday Themes","settings_hotkeys":"Hotkeys","settings_leaderboard":"Leaderboard","settings_remove_advertising":"Remove Advertising","settings_reset_stats":"Reset stats","settings_sounds":"Sound effects","settings_tableau_magnification":"Long tableau visibility","settings_try_variation":"Try a variation","settings_zoom":"Zoom","sgg_fallback_headline":"Play {game} Solitaire online and for free","sgg_fallback_intro":"On Solitaired, you can play unlimited games of {game} Solitaire.","sgg_fallback_new_game":"Use the new game button to deal another game and new cards.","sgg_fallback_rules":"If you don't know how to play, click the rules button to learn the game.","shuffle":"Shuffle","shuffle_count":"Shuffle count","sidebar_all_rankings":"All rankings","sidebar_games_of_the_day":"Games of the Day","sidebar_offline_message":"It looks like you're playing offline. Stats may be out of date.","sidebar_other_popular_games":"Other popular games","sidebar_play":"Play","sidebar_see_all":"See all","sidebar_video_how_tos":"Video How-To's","sidebar_view_on":"View on:","sidebar_your_stats":"Your Stats","sidebar_your_wins_today":"Your Wins Today:","spider":"Spider","spider_one_suit":"Spider One Suit","statistics":"Statistics","stock":"Stock","streak":"Streak","sudoku":"Sudoku","super":"Super","swap_tiles":"Swap Tiles","tagline":"Always free, always fun, all the time","terms_of_service":"Terms of service","tile_count":"Tile Count","trademark_text":"is a trademark of Unwind Media","translations":"Translations","trending_games":"Daily Journey","tripeaks":"TriPeaks","turn_1":"Turn 1","turn_3":"Turn 3","undo":"Undo","user":"User","win_perc":"Win %","won_today":"Won today","work_mode":"Work mode","yukon":"Yukon","zoom":"Zoom"};
+//- These are legacy variables that are spread around the code base. If you want to
+//- add a new global variable, add it to the SOLITAIRED_GLOBAL object in the controller and it will automatically be added to the page.
+window.SOLITAIRED_GLOBAL.seedStats = null;
+window.SOLITAIRED_GLOBAL.hideGameOfDay = false;
+window.SOLITAIRED_GLOBAL.hideWinnable = false;
+window.SOLITAIRED_GLOBAL.trendingGames = null;
+window.SOLITAIRED_GLOBAL.avatarData = null;
+window.SOLITAIRED_GLOBAL.headline = "Spider Solitaire";
+//- Many of the values in customizations will be out of sync if a user adjusts them during the game.
+//- If you are writing code that is utilizing window.customizations, make sure updating the settings actually updates
+//- the global object.
+window.customizations = {"imageFolder":"/images/style-classic-2","feltColor":"#245324","cardBack":false,"factorHeight":1.45,"sounds":null,"animations":null,"autoplayDisabled":null,"autohintDisabled":null,"autocompleteDisabled":null,"hotkeys":null,"holidaysDisabled":null,"disableTableauMagnification":null};</script><script>let adSlot1; let adSlot3;
+</script><script>window.adsbygoogle = window.adsbygoogle || [];
+var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
+adConfig({
+  preloadAdBreaks: 'on',
+  sound: 'off',
+});
+</script><script>window.PBJS_CONFIG = {
+  userSync: {
+    userIds:[]
+  }
+}</script><meta name="description" content="Play Spider Solitaire for free with no download or registration required. Try the classic one suit version, two suit version, or four suit version."><meta property="keywords" content="spider solitaire, spider 1 suit, spider 2 suit, spider 4 suit"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta property="og:locale" content="en_US"><meta property="og:type" content="website"><meta property="og:title" content="Spider Solitaire - Play Online & 100% Free | Solitaired.com"><meta property="og:description" content="Play Spider Solitaire for free with no download or registration required. Try the classic one suit version, two suit version, or four suit version."><meta property="og:site_name" content="Solitaired"><meta name="twitter:card" content="https://solitaired.com/images/favicons/spider-ogimage.png"><meta property="og:image" content="https://solitaired.com/images/favicons/spider-ogimage.png"><meta name="twitter:description" content="Play Spider Solitaire for free with no download or registration required. Try the classic one suit version, two suit version, or four suit version."><meta name="twitter:title" content="Spider Solitaire - Play Online & 100% Free | Solitaired.com"><meta name="twitter:image" content="https://solitaired.com/images/favicons/apple-touch-icon.png"><meta name="apple-mobile-web-app-title" content="Solitaired"><meta name="mobile-web-app-title" content="Solitaired"><meta name="application-name" content="Solitaired"><link rel="dns-prefetch" href="//www.googletagservices.com"><link rel="dns-prefetch" href="//securepubads.g.doubleclick.net"><link rel="preconnect" href="//www.googletagservices.com"><link rel="preconnect" href="//securepubads.g.doubleclick.net"><link rel="canonical" href="https://solitaired.com/spider-solitaire"><meta property="og:url" content="https://solitaired.com/spider-solitaire"><link rel="alternate" hreflang="es" href="https://solitaired.com/es/solitario-spider"><link rel="alternate" hreflang="fr" href="https://solitaired.com/fr/spider-solitaire"><link rel="alternate" hreflang="de" href="https://solitaired.com/de/spider-solitaire"><link rel="alternate" hreflang="it" href="https://solitaired.com/it/spider-solitaire"><link rel="alternate" hreflang="pt" href="https://solitaired.com/pt/spider-solitaire"><link rel="alternate" hreflang="el" href="https://solitaired.com/el/spider-solitaire"><link rel="alternate" hreflang="ja" href="https://solitaired.com/ja/spider-solitaire"><link rel="alternate" hreflang="nl" href="https://solitaired.com/nl/spider-solitaire"><link rel="alternate" hreflang="pl" href="https://solitaired.com/pl/spider-solitaire"><link rel="alternate" hreflang="ro" href="https://solitaired.com/ro/spider-solitaire"><link rel="alternate" hreflang="tr" href="https://solitaired.com/tr/spider-solitaire"><link rel="alternate" hreflang="hi" href="https://solitaired.com/hi/spider-solitaire"><link rel="alternate" hreflang="sk" href="https://solitaired.com/sk/spider-solitaire"><link rel="alternate" hreflang="sr" href="https://solitaired.com/sr/spider-solitaire"><link rel="alternate" hreflang="sv" href="https://solitaired.com/sv/spider-solitaire"><link rel="alternate" hreflang="da" href="https://solitaired.com/da/spider-solitaire"><link rel="alternate" hreflang="fi" href="https://solitaired.com/fi/spider-solitaire"><link rel="alternate" hreflang="no" href="https://solitaired.com/no/spider-solitaire"><link rel="alternate" hreflang="cs" href="https://solitaired.com/cs/spider-solitaire"><link rel="alternate" hreflang="hu" href="https://solitaired.com/hu/spider-solitaire"><link rel="alternate" hreflang="ko" href="https://solitaired.com/ko/spider-solitaire"><link rel="alternate" hreflang="en" href="https://solitaired.com/spider-solitaire"><link rel="alternate" hreflang="x-default" href="https://solitaired.com/spider-solitaire"><link rel="alternate" type="application/markdown" href="https://solitaired.com/spider-solitaire.md"><link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png"><link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5"><link rel="shortcut icon" href="/images/favicons/favicon.ico"><link rel="manifest" href="/pwa-manifests/spider.json"><link rel="stylesheet" href="/stylesheets/style.css?version=1782930872000"><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());</script><script>gtag('config', 'G-46V4LFF3TJ', gtagPayload);
+gtag('config', 'AW-641870751');
+</script><script>if (SOLITAIRED_GLOBAL.todayGamesPlayed == 1) {
+  gtag('event', 'conversion', {'send_to': 'AW-641870751/qCOmCLDs0KgDEJ_XiLIC'});
+}
+
+
+</script></head><body><div id="fb-root"></div><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap"><link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet"><div class="nav-background"><nav class="navbar navbar-expand-md" id="site-header"><a class="navbar-brand main-logo" href="/"><img src="/images/solitaired-logo-white.png" alt="Solitaired" width="120" height="20"></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"><span class="d-inline-block"><img src="/images/hamburger-menu.svg" width="36"></span></button><div class="collapse navbar-collapse" id="navbarToggler"><ul class="nav navbar-nav ml-auto mr-2 spider"><li class="nav-item"><a class="solitaire-nav-link mr-3" href="/">Solitaire</a></li><li class="nav-item"><a class="spider-nav-link mr-3" href="/spider-solitaire">Spider Solitaire</a></li><li class="nav-item"><a class="freecell-nav-link mr-3" href="/freecell">FreeCell</a></li><li class="nav-item"><a class="pyramid-nav-link mr-3" href="/pyramid-solitaire">Pyramid</a></li><li class="nav-item"><a class="tripeaks-nav-link mr-3" href="/tripeaks-solitaire">TriPeaks</a></li><li class="nav-item"><a class="mahjong-nav-link mr-3" href="/mahjong">Mahjong</a></li><li class="nav-item"><a class="yahtzee-nav-link mr-3" href="/yahtzee">Yahtzee</a></li><li class="nav-item"><a class="klondike-nav-link mr-3" href="/klondike-solitaire">Klondike</a></li><li class="nav-item"><a class="mr-3" href="https://sudokubliss.com/" target="_blank">Sudoku</a></li><li class="nav-item dropdown"><a class="dropdown-toggle mr-3" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-expanded="false">Card Games</a><div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item hearts-nav-link" href="/hearts">Hearts</a><a class="dropdown-item spades-nav-link" href="/spades">Spades</a><a class="dropdown-item whist-nav-link" href="/whist">Whist</a><a class="dropdown-item euchre-nav-link" href="/euchre">Euchre</a><a class="dropdown-item bridge-nav-link" href="/bridge">Bridge</a><a class="dropdown-item cribbage-nav-link" href="/cribbage">Cribbage</a><a class="dropdown-item gin-rummy-nav-link" href="/gin-rummy">Gin Rummy</a><a class="dropdown-item rummy-nav-link" href="/rummy">Rummy</a><a class="dropdown-item sevens-nav-link" href="/sevens">Sevens</a><a class="dropdown-item speed-nav-link" href="/speed">Speed</a><a class="dropdown-item trash-nav-link" href="/trash">Trash</a><a class="dropdown-item egyptian-rat-screw-nav-link" href="/egyptian-rat-screw">Egyptian Rat Screw</a></div></li><li class="nav-item"><a class="mr-3" href="/free-games">All Games</a></li><li class="nav-item dropdown"><a class="dropdown-toggle mr-3" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-expanded="false">Resources</a><div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/guides">How to Play &amp; Strategy Guides</a><a class="dropdown-item" href="/blog">Blog</a></div></li><li class="nav-item"><div class="notification-bell-container" style="position: relative; display: inline-block;"><button class="btn btn-link notification-bell-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; padding:0px 2px; top: -3px; position: relative;"><svg class="notification-bell-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffe2d1" viewBox="0 0 16 16"><path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"></path></svg><div class="notification-alert-dot"></div></button><div class="dropdown-menu dropdown-menu-right" id="notification-dropdown" aria-labelledby="notification-bell-btn"><div class="dropdown-header small">Product updates</div><div class="notification-items-container"><div class="dropdown-item text-center text-muted" style="padding: 20px;">No new updates</div></div><div class="dropdown-item text-center"><a href="/blog/update" style="text-decoration: none; color: inherit;"><small class="text-muted">All updates</small></a></div></div></div></li><a href="javascript:void(0);"><div id="avatarNav" data-toggle="tooltip" data-placement="bottom" title="Create your avatar" style="height:20px;aspect-ratio:1;"></div></a><li class="nav-item logged-in" style="display:none;"><a class="pl-3 mr-3" href="/account">Account</a></li><li class="nav-item logged-in" style="display:none;"><a class="logout-link" href="/user/logout">Logout</a></li><li class="nav-item logged-out l-border"><span class="pl-md-3 pr-md-2 ajaxlink" id="loginLink" data-toggle="modal" data-target="#loginModal">Login</span></li></ul></div></nav></div><a name="top" style="width:0;height:0;"></a><div id="op-quick-auth"></div><div id="pageContainer" style="background-color: white;"><div id="cardSpriteImages"></div><style type="text/css">body { overflow-x: hidden; }
+</style><div class="game_container" id="gameContainer" style="background-color:#245324; min-height: 100vh;background-image:url(&quot;/images/site-backgrounds/classy-fabric.png&quot;);"><div id="gameStatusMessage" style="display:none;"><div class="freda"></div><div class="alert alert-success"></div></div><div class="complete_container"><button class="btn btn-lg btn-info" id="completeButton">Complete game</button></div><div class="timer_container spider-menu pb-2 pt-2" id="timerContainer"><div class="row menu-buttons"><div class="col" id="gameMenuCol" style="padding-left:12px;"><h2 id="gameName" data-name="Spider Solitaire">Spider Solitaire</h2><div class="long-mobile-menu"><div class="mr-2 btn-group turn-btns" data-google-interstitial="false" role="group" aria-label="Spider Variations"><a class="btn btn-sm btn-success" data-confirm-leaving="true" data-link="/spider-solitaire-four-suits" href="/spider-solitaire-four-suits">Four Suits</a><a class="btn btn-sm btn-success" data-confirm-leaving="true" data-link="/spider-solitaire-two-suits" href="/spider-solitaire-two-suits">Two Suits</a><a class="btn btn-sm btn-success active" data-confirm-leaving="true" data-link="/spider-solitaire" href="/spider-solitaire">One Suit</a><a class="btn btn-sm btn-success" data-confirm-leaving="true" data-link="/scorpion-solitaire" href="/scorpion-solitaire">Scorpion</a><button class="mr-1 btn btn-success dropdown-toggle" id="newGameDropdownButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</button><div class="dropdown-menu dropdown-menu-right" id="newGameDropdown" aria-labelledby="newGameDropdownButton"><a class="dropdown-item" data-label="easy-scorpion" href="/easy-scorpion">Easy Scorpion</a><a class="dropdown-item" data-label="threeblindmice" href="/threeblindmice">Three Blind Mice</a><a class="dropdown-item" data-label="beetle" href="/beetle">Beetle</a><a class="dropdown-item" data-label="doubleeasthaven" href="/doubleeasthaven">Double Easthaven</a><a class="dropdown-item" data-label="chinese" href="/chinese">Chinese</a><a class="dropdown-item" data-label="easthaven" href="/easthaven">Easthaven</a><a class="dropdown-item" data-label="dragon" href="/dragon">Dragon</a><a class="dropdown-item" href="/free-games/spider">Spider: All Games</a></div></div><div class="dropdown" id="new-game-dropdown-wrapper" data-google-interstitial="false" style="display: inline-block;"><button class="mr-2 btn btn-success dropdown-toggle" id="dropdownMenuOffset" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">New game</button><div class="dropdown-menu dropdown-menu-right" id="newGameDropdown" aria-labelledby="dropdownMenuOffset"><a class="random-deal-dropdown dropdown-item" data-label="random" href="?deal=random" rel="nofollow">Random shuffle</a><a class="winnable-only-dropdown dropdown-item" data-label="winnable-only" href="?deal=winnable" rel="nofollow">Winnable Only</a><a class="dropdown-item restart" data-label="restart-same-game" href="?seed=8n7mtCd0854cSXL3+mOY/Q+8+KVc6VbejQQUir10wsc=" rel="nofollow">Restart current game</a><a class="dropdown-item hide-offline" data-label="game-of-day" href="?game-of-the-day=true" rel="nofollow">Game of the Day</a><span class="dropdown-item hide-offline" id="recentGames" data-toggle="modal" data-target="#loginModal">Recent Games</span><div class="dropdown-challenge-container" id="challengeDropdownContainer"></div><div class="dropdown-divider difficulty-section"></div><h6 class="dropdown-header difficulty-section">Difficulty</h6><a class="difficulty-section dropdown-item" data-label="difficulty-easy" href="?difficulty=easy" rel="nofollow">Easy Shuffle</a><a class="difficulty-section dropdown-item" data-label="difficulty-medium" href="?difficulty=medium" rel="nofollow">Medium Shuffle</a><a class="difficulty-section dropdown-item" data-label="difficulty-hard" href="?difficulty=hard" rel="nofollow">Hard Shuffle</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/easy-scorpion" rel="nofollow">Easy Scorpion&nbsp;<span class="badge badge-warning" style="position:relative;top:-2px">new!</span></a><a class="dropdown-item free-games-link" href="/free-games">All Games</a></div></div></div><div class="long-mobile-menu mt-2"><button class="mr-1 btn btn-success" id="settingsModalButton" type="button" data-toggle="modal" data-target="#settingsModal"><img class="settings-svg" src="/images/settings.svg" alt="settings" height="11"><span class="settings-label">Settings</span></button><a class="btn-success btn mr-1 hide-offline" id="gameOfDayBtn" href="?game-of-the-day=true" title="Game of the Day"><svg class="bi bi-calendar-week" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewbox="0 0 16 16" style="position:relative; top:-2px"><path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path></svg><span class="d-none d-md-inline gotd-menu-text">&nbsp Game of the Day</span></a><span class="ml-1 mr-1 btn btn-sm gradient-purple-button" id="hintBtn" data-label="hint">Hint</span><span class="mr-1 btn btn-info btn-sm" id="undoBtn" data-label="undo">Undo</span></div></div></div></div><div id="gameRow"><div id="canvasContainer"><div id="canvasWindow"><canvas id="canvas"></canvas></div><div id="timerContainerBottom"><div id="info-box"><div class="info-box-item"><span class="timer-button" data-label="timer"><span class="stopwatch" id="pauseTimer"></span><span class="timer-icon">▶</span></span></div><div class="info-box-item"><div class="info-box-metrics-container"><div class="info-box-metrics"><div class="info-metric-yellow" id="turnCount">0</div><div class="move-section">Moves</div></div><div class="info-box-metrics"><div class="info-metric-yellow" id="stockDealCount">0</div><div class="stock-count-container">Deals Left</div></div><div class="info-box-metrics-border-left pl-1 ml-1 d-flex" id="seed-stats-container" style="display: none;"><div class="info-box-metrics" id="seed-stats-info-box" style="display: none;"><span class="info-metric-yellow" id="seed-stats-win-perc" style="cursor: pointer;" title="">0%</span><div>Shuffle Win %</div></div><div class="info-box-metrics" id="least-moves" style="display:none"><div class="info-metric-yellow" id="least-moves-count">0</div><div>AI best moves</div></div><div class="info-box-metrics" id="solvable-check" style="display:none"><button class="btn btn-sm btn-link" id="solvable-button" data-toggle="modal" data-target="#solver-result-modal">Solvable?</button></div></div></div></div><div class="info-box-item"><span class="report-bug hide-offline" onclick="loadContactModal()">Report bug</span></div></div></div></div><div id="adSidebarContainer"><div class="sidebar-stats mb-1 text-center"><div class="sidebar-video-hub d-flex justify-content-between align-items-center px-2 py-1"><span><img class="sidebar-video-hub-logo" src="/images/solitaired-logo-no-cards.png" alt="Solitaired"> Video How-To's</span><span class="sidebar-video-hub-icons">View on:<a href="https://vimeo.com/solitaired" target="_blank" rel="noopener noreferrer nofollow"><img src="/images/vimeo-small-logo.png" alt="Vimeo" height="12"></a><a href="https://www.tiktok.com/@solitaired_app" target="_blank" rel="noopener noreferrer nofollow"><img src="/images/tiktok-logo-white.png" alt="TikTok" height="15"></a></span></div><div class="sidebar-stats-adunit" id="solitaired_D1"></div><div class="sidebar-video-hub sidebar-video-hub--flat px-2 py-1 text-left">Your Stats</div><div class="row text-light stats-row mt-1 mx-0"><div class="col stats-win-rate-container"><strong class="stats-win-rate">&ndash;</strong><div class="small">Win %</div></div><div class="col"><strong class="stats-lowest-moves">&ndash;</strong><div class="small"># Moves</div></div><div class="col"><strong class="stats-fastest-time">&ndash;</strong><div class="small">Best Time</div></div><div class="col"><strong class="stats-best-score">&ndash;</strong><div class="small">Best Score</div></div><div class="col"><div class="gotd-streak-flex"><div class="gotd-streak-info"><strong class="stats-gotd">&ndash;</strong><div class="small">Streak</div></div><div class="gotd-reminder-icon" style="display:none;"></div></div></div></div><div class="daily-win-sidebar"><div class="row text-light align-items-center" style="margin: 0;"><div class="col-auto"><a href="/user/update#avatarEditorUserUpdateTitle"><div id="avatarSidebarLeaderboard" style="height:30px;width:30px;"></div></a></div><div class="col text-left"><div class="text-light font-weight-bold">Your Wins Today: 0</div></div><div class="col-auto"><a class="font-weight-bold skip-prevent-accidental-nav" href="/high-scores/daily-wins-leaderboard">All rankings &raquo;</a></div></div></div><div class="only-offline-cache p-2 text-white-50">It looks like you're playing offline. Stats may be out of date.</div></div><div id="solitaired_D2"></div><script>$('#subscribeAdFree').on('click', function() { $('#subscribePayments').fadeIn().delay(3000).fadeOut(); });</script></div></div></div><div class="container main-content"><div class="row"><div class="col"><div id="adMainContainer"></div></div></div><div class="row post"><div class="col-sm-8 mt-5"><div><h1 class="homepage-headline">Play Spider Solitaire for Free Online</h1>  
+
+<p>Start playing unlimited games of Spider Solitaire for free. No download or email registration required, and play in full screen mode or on your mobile phone. Start playing above by clicking and moving the cards.</p>  
+
+<h2 class="homepage-headline">How to Play</h2>
+
+<p>Spider Solitaire is a variation of classic solitaire where you have to place 104 cards into eight foundations by sorting them in a tableau. There are three difficulty levels in Spider Solitaire with 1 Suit being the easiest, <a href="https://solitaired.com/spider-solitaire-two-suits">2 Suits</a> being medium difficulty, and <a href="https://solitaired.com/spider-solitaire-four-suits">4 Suits</a> being the hardest. <a href="https://www.youtube.com/watch?v=WOhQaJvl-RQ">Watch how to play here,</a> or read below.</p>
+ 
+<h3 class="homepage-subheading">Objective</h3>  
+<p>Your goal is to arrange and sequence the cards in the columns along the tableau in descending order, from King to Ace. Whenever you complete a sequence, you move those cards from the tableau to one of the eight foundations. The game is won when each foundation is filled with suit-stacked cards, arranged from King to Ace, and no cards remain in the tableau.</p>   <h3 class="homepage-subheading">The Setup and Play Area</h3>  <p><b>Tableau</b>: These are the ten columns of 54 cards, where where the first 4 columns have 6 cards and the last 6 columns have 5 cards. Here, you will try to arrange cards by suit, from Ace to King.</p><p><b>Stock pile</b>: After cards are dealt into the tableau, the remaining 50 cards go to the stock pile. You can add cards to the tableau 10 at a time, with 1 card each going into each tableau column.</p><p><b>Foundation</b>: When cards in the tableau are arranged from Ace to King, they are then placed in one of the 8 foundation piles. Once all the cards are moved to the foundation, you win!</p>  <img loading="lazy" src="https://defbnszqe1hwm.cloudfront.net/images/Spidertermsv2.png" alt="Spider Solitaire terms"><h3 class="homepage-subheading">Available Moves</h3>  <ol>  <li>Build a sequence of cards in the piles by moving any face-up card on top of a card with the next-highest value, such as a 9 of spades moving onto a 10 of spades.</li> </ol> 
+
+<p><img loading="lazy" src="https://defbnszqe1hwm.cloudfront.net/images/Ninontenv2.png" alt="Nine on ten"></p> 
+
+<ol start="2"> <li>You can move a group of cards in a column as a single unit to another pile if they are all in descending order of the same suit. In the below example, you can move the 10 and 9 of Spades on top of the Jack of Spades.</li> </ol> <p><img loading="lazy" src="https://defbnszqe1hwm.cloudfront.net/images/Bunchmovementv2.png" alt="Moving cards in a bunch"></p> 
+
+<ol start="3"> <li>If only face-down cards remain in a column as face up cards are moved, turn the last face-down card over. This will reveal a new card, which can then be sequenced.</li> 
+
+<li>If you can not sequence any more cards on tableau, draw out 10 more cards, face-up, to each of the 10 piles in order to keep the game moving. You’ll draw from the stock pile five times over the course of the game, drawing 50 cards in total.</li> 
+
+<li>When cards are drawn from the stock pile, you may have sequences that are no longer ordered. In the below example, you’ll see there is an Ace on top of the 10. The 10 and the Jack can only be moved once the Ace is moved. All three of these cards cannot be moved together because they are not in sequence.</li> </ol> 
+
+<p><img loading="lazy" src="https://defbnszqe1hwm.cloudfront.net/images/Blockedv2.png" alt="Moving cards in a bunch"></p> 
+
+
+<ol start="6"> <li>Even if a card is blocked, you can still continue to sequence below the blocked card. In the below example, even though the Queen needs to be moved, you can still put a Jack on top of the Queen. Once this is done, you need to move the Queen and the Jack to unblock and access the 9.</li> 
+</ol> 
+
+<p><img loading="lazy" src="https://defbnszqe1hwm.cloudfront.net/images/Sequenceafterblockv2.png" alt="sequence after block"> </p>
+
+<ol start="7"> <li>If a column is empty, you can move new cards to that column, which can then be sequenced.</li> 
+
+<li>As you make your moves, begin to put together cards in descending order from King to Ace of the same suit in the same column. Once successfully done, those cards will be moved to one of foundation piles automatically. After the eight foundation piles are filled, you win. If all the cards have been drawn and there are no more moves left, the game is over, and you lose.</li> 
+</ol>
+
+<h3 class="homepage-subheading">How do you play 2 Suits or 4 Suits Spider Solitaire?</h3>
+  
+<p>1 Suit Spider Solitaire is a great way to begin to learn how the game is played. With some experience under your belt, you can challenge yourself with <a href="https://solitaired.com/spider-solitaire-two-suits">2</a> or <a href="https://solitaired.com/spider-solitaire-four-suits" target="_blank">4 Suits Spider Solitaire</a>.</p> <p>In 2 and 4 Suits Spider Solitaire, the general layout is the same, and the rules do not vary too much. Again, two decks will be used. In 2 Suits, 54 cards of 2 suits are used. In 4 Suits, 26 cards from each suit are used. Lay out the cards the same way you would for 1 Suit Spider Solitaire. After this, follow these rules:</p> <ol> <li>Apply the same card-moving rules from single to multi-suit.</li> <li>You can only move groups of cards as a single unit if they are in sequential order and of the same suit.</li> <li>You can sequence cards of different colors or suits. However, you can only move cards together, or as a group, to other tableau columns if they are of the same suit. If you move a 4 of Hearts on top of a 5 of Spades, the 5 of Spades is blocked until the 4 of Hearts is moved. They cannot be moved together as a group.</li> </ol> <p><img loading="lazy" src="https://defbnszqe1hwm.cloudfront.net/images/2suitblockv2.png" alt="sequence after block"></p> <ol start="4"> <li>Empty columns can be filled by any card, just like single suit.</li> 
+
+<li>The rest of the same rules apply, and the game is won when the foundation piles are filled. In 4 suits, this means 2 foundation piles of each suit are completed, and in 2 suits, 4 foundation piles of 2 suits are completed.
+</li> </ol> 
+
+<p>More suits adds more difficulty to the game and means you have to be careful because a wrong move can trap a card that you desperately need! Moreover, as more suits are added, there is a smaller chance of winning the game.</p> <p>For more details, <a href="https://solitaired.com/guides/how-to-play-spider-solitaire" target="_blank">check out our guide on how to play Spider Solitaire.</a></p>  
+
+<h2 class="homepage-headline">Spider Solitaire strategy</h2>
+<ul>
+<li><b>Prioritize identifying face-down cards.</b> Revealing cards is critical to understanding what cards you have and don't have, as well as finding new options to sequence cards. Before drawing any cards from the stockpile, be sure you try to reveal as many cards in the tableau as possible.</li>
+
+<li><b>Create empty columns when you can.</b> You can move any card or groups of sequenced cards to an empty tableau column. This can be important to free up moves and advance the game.</li>
+
+<li><b>Move higher ranking cards to empty columns.</b> If you move lower-ranking cards to an empty column, you can only place a limited number of cards there. For example, if you move a 3 to an empty column, only a 2 and an Ace can then be moved there. Instead, try moving higher-ranking cards like Kings to an empty column, allowing you to build longer sequences or helping you arrange cards of the same suit from King to Ace.</li> 
+
+<li><b>Use the undo button.</b> At times, you may make moves that prevent you from further progress. Backtrack by using the undo button, and look for alternative moves.</li> 
+
+</ul>
+
+
+<h2 class="homepage-headline">Frequently Asked Questions</h2>
+
+<h3 class="homepage-subheading">What are the odds of winning 1 Suit Spider Solitaire?</h3>
+<p><b>Spider Solitaire&nbsp;is considered easy in difficulty.</b> We looked at a sample of 932,087 random games played on our site. Of those games, 487,429 were won, making the win rate 52.29%. This makes 1 Suit more than three times easier than 2 Suits, which has a win rate of 16.6%, and eight times easier than 4 Suits, which has a win rate of 6.2%.</p>
+
+<p>In Spider Solitaire, not all hands are winnable, no matter what you do.&nbsp;<a href="https://solitaired.com/guides/how-to-win-spider-solitaire" target="_blank">Here are strategies</a><span style="letter-spacing: -0.16px;">&nbsp;that can increase your probability of winning.</span><br></p>  
+
+<h3 class="homepage-subheading"> What are games similar to Spider Solitaire?</h3>
+<ul>
+<li><a href="https://solitaired.com/easthaven">Easthaven Solitaire</a> is a Klondike game, but with cards dealt from the stock pile like Spider.</li>
+<li><a href="https://solitaired.com/spiderette">Spiderette</a>&nbsp;is a game similar to Spider, but played with one deck and a tableau like Klondike. </li>
+<li><a href="https://solitaired.com/scorpion">Scorpion Solitaire</a>&nbsp;is a combination of Spider and Yukon, cards can be moved as a group even if they are not sequenced, and you build cards from Ace to King in the tableau before they are moved to the foundation. </li>
+</ul>
+
+<h3 class="homepage-subheading">What is the history of Spider Solitaire?</h3> 
+<p>The game is called “spider” solitaire due to the relationship between spiders having eights legs, and the eight foundation piles that need to be completed in order to win the game. While the current version originates from 1949, the first mention of Spider comes <i><a href="https://www.abebooks.com/magazines-periodicals/Games-Digest-91937-1st-issue-card-games-chess-board-games-loaded/30852436526/bd">Games Digest</a></i><a> published in 1937</a>. They describe the game we know today as Spider, but it slightly differs with the tableau having 50 cards instead of 54. However, they talk about it as a well-known game, so it's likely Spider has its origins from the early 1930s, at the very least.</p>
+
+<p>Spider Solitaire later grew in popularity with its inclusion in Microsoft Windows in 1998.</p>
+
+<h3 class="homepage-subheading">What are other popular Solitaire games?</h3>
+<p>Here are some good games to play:</p>
+<ul>
+<li><a href="https://solitaired.com/" target="_blank">Solitaire</a></li><li><a href="https://solitaired.com/mahjong">Mahjong</a></li><li><a href="https://solitaired.com/freecell">FreeCell Solitaire</a></li><li><a href="https://solitaired.com/crescent">Crescent Solitaire</a></li><li><a href="https://solitaired.com/yukon-solitaire">Yukon Solitaire</a></li><li><a href="https://solitaired.com/tripeaks-solitaire">TriPeaks Solitaire</a></li><li><a href="https://solitaired.com/pyramid-solitaire">Pyramid Solitaire</a></li><li><a href="https://solitaired.com/golf">Golf Solitaire</a></li></ul>    
+
+<p>If you're looking for more fun, check out our other 500+ <a href="https://solitaired.com/free-games" target="_blank">free games</a>, and try our <a href="https://solitaired.com/daily-solitaire">daily Solitaire challenges</a>. If you're looking for an app based version, we've listed <a href="https://solitaired.com/top-7-best-spider-solitaire-apps" target="_blank">the best Spider Solitaire apps here.</a></p>  	<hr> 		<p>Want to get updates or connect with other card game players? Join our  			<a href="https://www.facebook.com/solitairedapp">Facebook community</a>. 	</p></div></div></div><div class="row"></div></div><div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="helpModalLabel">How to Play Spider Solitaire</h5><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><p class="credit"></p><div class="video text-center"></div><p class="description"></p><p><span class="objective"></span></p><ul class="layout"></ul></div><div class="modal-footer"><button class="btn btn-light" type="bottom" data-dismiss="modal">Close</button></div></div></div></div><script>$('#helpModal').on('shown.bs.modal', function (e) {
+  $.post('/rules', {
+    game: nameSlug,
+    isAndroid: SOLITAIRED_GLOBAL.isAndroid
+  }, function(resp) {
+    if (!resp.help) {
+      return;
+    }
+    let help = resp.help;
+    $('.description').html(help.description);
+    if (help.video) {
+      $('.video').html('<iframe title="vimeo-player" src="'+help.video+'" style="aspect-ratio: 516/315; width:100%;" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>');
+    }
+    $('.objective').html(help.objective);
+    $('.credit').html(help.credit);
+    $('.layout').html(help.layout);
+  });
+})</script><div id="congrats"><div id="closeCongrats">&times;</div><div class="congrats-title"></div><div class="congrats-data"><div class="congrats-message"></div><div class="congrats-stats"><div style="background-image: URL('/images/loading.svg'); width: 100px; height: 100px; margin: 0 auto;"></div></div><div class="congrats-inner"></div><div class="highscore-body mb-2 px-3"><table class="table small table-sm table-borderless" style="display:none;"><thead><tr><th class="text-left border-bottom">#</th><th class="text-left border-bottom"></th><th class="text-left border-bottom">Top scorers</th><th class="text-right border-bottom"><a id="moves-leaderboard-header" href="#" data-metric="moves">Moves<span class="d-none leaderboard-column-sort">▼</span></a></th><th class="text-right border-bottom"><a id="time-leaderboard-header" href="#" data-metric="time">Time<span class="d-none leaderboard-column-sort">▼</span></a></th><th class="text-right border-bottom score-column"><a id="score-leaderboard-header" href="#" data-metric="score">Score<span class="leaderboard-column-sort">▼</span></a><a class="ml-1 badge bg-secondary text-light" id="scoreTooltip" data-toggle="popover" title="Scoring" data-placement="bottom" data-boundary="window" data-trigger="hover" data-content="Scores are calculated by adding the number of seconds to the number of moves made in a game. Lower scores are better.">?</a></th></tr></thead><tbody></tbody></table></div></div><style id="celebration-styles">@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+@keyframes confetti-fall {
+  to { transform: translateY(100vh) rotate(360deg); }
+}
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confetti-fall 3s linear;
+  z-index: 9999;
+}
+</style><div id="challenge-progress-container" style="display: none;"><!-- Progress section - shown when challenge is in progress--><div class="challenge-progress-section" id="challenge-progress-active" style="display: none;"><h6 class="text-center mb-2 mt-2"><i class="fas fa-trophy text-warning mr-1"></i><span id="challenge-progress-name">Challenge Progress</span></h6><div class="progress" style="height: 25px;"><div class="progress-bar bg-success" id="challenge-progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><span class="progress-bar-text">0%</span></div></div><div class="d-flex justify-content-between mt-2 small"><span id="challenge-progress-text">0 / 0 games won</span><span id="challenge-progress-remaining">0 games remaining</span></div></div><!-- Celebration section - shown when challenge is completed--><div class="challenge-celebration-section mt-2" id="challenge-celebration" style="display: none;"><div class="challenge-celebration-info"><div class="challenge-celebration-container"><div class="badge-celebration"><img id="celebration-badge-image" height="80" style="display: none;"></div><div class="mt-1 small"><h5 class="text-success mb-2">🎉 <span id="celebration-challenge-name">Challenge Name</span> <span id="celebration-completed-label">Completed!</span> 🎉</h5><strong id="celebration-badge-earned" data-template="You've earned the {badge} badge!">You've earned the Badge Title badge!</strong><br><a class="view-badge-link" href="#">View badge &raquo;</a></div></div></div></div></div><div class="congrats-bottom" data-google-interstitial="false"></div><div class="mt-2" id="congrats-card-collectibles"></div></div><script>var imageFolder = "/images/style-classic-2";
+var seed = "8n7mtCd0854cSXL3+mOY/Q+8+KVc6VbejQQUir10wsc=";
+var felt = "#245324";
+var nameSlug = "spider-one-suit";
+var gameId;
+var homeUrl = "/spider-solitaire";
+var factorHeight = 1.45;
+var congratsMessage = "<span class=\"congrats_text\">Congrats!</span>";
+var loggedInUser = false;
+var gameOfTheDay = false;
+var cardBack = false;
+var stock = [];
+var handMode = "";
+var spiderSuits = ["spade","spade","spade","spade"];
+spiderSuits.forEach(function(suit) {
+	for (let i = 1; i <= 13; i++) {
+		stock.push({
+			name: suit+'_'+i,
+			suit: suit,
+			number: i,
+			turnedup: 0,
+      hide: 0
+		});
+	}
+	for (let i = 1; i <= 13; i++) {
+		stock.push({
+			name: suit+'_'+i,
+			suit: suit,
+			number: i,
+			turnedup: 0,
+      hide: 0
+		});
+	}
+});
+var cardCount = stock.length;
+var image_names = ['back_red', 'card_base', 'logo'].concat(stock.map(function(card) { return card.name}));
+</script><script defer src="/javascripts/dist/spider.js?version=1782931082000" type="text/javascript"></script><div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="helpModalLabel">How to Play Spider Solitaire</h5><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><p class="credit"></p><div class="video text-center"></div><p class="description"></p><p><span class="objective"></span></p><ul class="layout"></ul></div><div class="modal-footer"><button class="btn btn-light" type="bottom" data-dismiss="modal">Close</button></div></div></div></div><script>$('#helpModal').on('shown.bs.modal', function (e) {
+  $.post('/rules', {
+    game: nameSlug,
+    isAndroid: SOLITAIRED_GLOBAL.isAndroid
+  }, function(resp) {
+    if (!resp.help) {
+      return;
+    }
+    let help = resp.help;
+    $('.description').html(help.description);
+    if (help.video) {
+      $('.video').html('<iframe title="vimeo-player" src="'+help.video+'" style="aspect-ratio: 516/315; width:100%;" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>');
+    }
+    $('.objective').html(help.objective);
+    $('.credit').html(help.credit);
+    $('.layout').html(help.layout);
+  });
+})</script><div class="modal fade" id="customizeModal" tabindex="-1" role="dialog" aria-labelledby="customizeModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="customizeModalLabel">Customize design</h4><button class="close" type="button" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div><div class="modal-body"><!-- Tab navigation--><ul class="nav nav-tabs mb-3" id="customizeTabs" role="tablist"><li class="nav-item"><a class="nav-link active" id="card-designs-tab" data-toggle="tab" href="#card-designs" role="tab" aria-controls="card-designs" aria-selected="true">Card Designs</a></li><li class="nav-item"><a class="nav-link" id="card-collectibles-tab" data-toggle="tab" href="#card-collectibles" role="tab" aria-controls="card-collectibles" aria-selected="false">Card Collectibles</a></li></ul><!-- Tab content--><div class="tab-content" id="customizeTabContent"><!-- Card Designs tab--><div class="tab-pane fade show active" id="card-designs" role="tabpanel" aria-labelledby="card-designs-tab"><h5>Full decks (card backs and card fronts)</h5><div class="card-deck-container row">       </div><h5 class="mt-3">Themes</h5><div class="theme-container row"></div><h5 class="mt-3">Card backs</h5><div class="card-back-container"></div><h5 class="mt-3">Background color</h5><div class="bgcolor-container"><input class="align-middle" id="colorPicker" type="color" aria-label="Color picker"><span class="btn btn-outline-primary btn-sm ml-2" id="resetColor">Reset color</span></div><h5 class="mt-3">Credits</h5><div class="credits"></div></div><!-- Card Collectibles tab--><div class="tab-pane fade" id="card-collectibles" role="tabpanel" aria-labelledby="card-collectibles-tab"><div class="card-collectibles-container mt-3"><div class="card-collectibles-loading text-center"><p class="text-muted">Loading your card collectibles...</p></div><div class="card-collectibles-error text-center d-none"><p class="text-danger">Failed to load card collectibles. Please try again later.</p></div><div class="card-collectibles-content d-none"><div class="card-count-info mb-3"></div><h5 class="mt-4">Collectible Decks</h5><p class="mb-1 small">Picture cards collected: <span class="card-count">0</span></p><div class="unlocked-decks row"><p class="text-muted no-decks-message col-12">Win more games to unlock card decks!</p></div></div></div></div></div></div><div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button></div></div></div></div><!-- Styles for card collectibles have been moved to public/stylesheets/style.css--><script>// We no longer need to handle collectible decks separately
+// The server-side settings will automatically load the previously selected deck
+
+// Function to load card collectibles when the tab is clicked
+$('#card-collectibles-tab').on('shown.bs.tab', function() {
+  loadCardCollectibles();
+});
+
+// Note: Collectible decks now use the same handler as custom card decks
+// The applyCollectibleDeck function has been removed as it's no longer needed
+
+// Function to load card collectibles
+function loadCardCollectibles() {
+  const $container = $('.card-collectibles-container');
+  const $loading = $('.card-collectibles-loading');
+  const $error = $('.card-collectibles-error');
+  const $content = $('.card-collectibles-content');
+  const $unlockedDecks = $('.unlocked-decks');
+  const $noDecksMessage = $('.no-decks-message');
+  
+  // Show loading, hide other sections
+  $loading.removeClass('d-none');
+  $error.addClass('d-none');
+  $content.addClass('d-none');
+  
+  // Make AJAX request to get decks
+  $.ajax({
+    url: '/card-collections/get-decks',
+    method: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      if (response.status === 'ok') {
+        const data = response.data;
+        
+        // Update card count info
+        $('.card-count').text(data.cardCount);
+        $('.decks-won').text(data.decksWon);
+        
+        // Clear existing decks
+        $unlockedDecks.empty();
+        
+        // Add all decks, showing locked ones as grayed out
+        if (data.allDecks && data.allDecks.length > 0) {
+          $noDecksMessage.addClass('d-none');
+          
+          // Find the next deck to unlock (first deck after the last unlocked deck)
+          const nextDeckToUnlock = data.allDecks.find(deck => !deck.isUnlocked);
+          
+          data.allDecks.forEach(function(deck) {
+          let deckHtml;
+          
+          if (deck.isUnlocked) {
+            // Unlocked deck with card images - structured like custom-card-deck for compatibility
+            const deckPath = `collectible-decks-${deck.name.toLowerCase()}`;
+            deckHtml = `
+              <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card custom-card-deck collectible-deck" id="${deckPath}" data-factor-height="1.45">
+                  <div class="card-body text-center">
+                    <h6 class="card-title">${deck.title}</h6>
+                    <div class="card-images-container d-flex justify-content-center">
+                      <div class="card-image mr-2">
+                        <img src="https://solitaired.com/custom-card-images/${deckPath}/heart_13.png" 
+                             alt="${deck.name} Heart 1" class="img-fluid" style="height: 100px;">
+                      </div>
+                      <div class="card-image">
+                        <img src="https://solitaired.com/custom-card-images/${deckPath}/back_red.png" 
+                             alt="${deck.name} Back" class="img-fluid" style="height: 100px;">
+                      </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary mt-2 show-picture-cards" data-deck-path="${deckPath}">
+                      View Cards
+                    </button>
+                    <div class="picture-cards-preview" style="display: none;">
+                    </div>
+                    <p class="text-success mt-2">Unlocked</p>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else {
+            // Locked deck with progress indicator
+            const deckPath = `collectible-decks-${deck.name.toLowerCase()}`;
+            const isNextToUnlock = nextDeckToUnlock && deck.id === nextDeckToUnlock.id;
+            deckHtml = `
+              <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card locked-collectible-deck ${isNextToUnlock ? 'next-to-unlock' : ''}">
+                  <div class="card-body text-center">
+                    <h6 class="card-title">${deck.title}</h6>
+                    <div class="card-images-container d-flex justify-content-center">
+                      <div class="locked-deck-container position-relative">
+                        <div class="locked-deck-overlay d-flex align-items-center justify-content-center">
+                          <div class="text-center p-1">
+                            <div class="small">${deck.cardsCollected}/${deck.totalNeeded}</div>
+                            <div class="progress mt-2" style="height: 10px;">
+                              <div class="progress-bar ${isNextToUnlock ? 'bg-success' : 'bg-secondary'}" role="progressbar" 
+                                   style="width: ${(deck.cardsCollected / deck.totalNeeded) * 100}%" 
+                                   aria-valuenow="${deck.cardsCollected}" aria-valuemin="0" aria-valuemax="${deck.totalNeeded}"></div>
+                            </div>
+                            <p class="mt-2 mb-0 small">
+                              ${isNextToUnlock ? 
+                                `Collect ${deck.totalNeeded - deck.cardsCollected} more cards` : 
+                                'Locked'}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+          
+            $unlockedDecks.append(deckHtml);
+          });
+        } else {
+          $noDecksMessage.removeClass('d-none');
+        }
+        // Show content, hide loading and error
+        $loading.addClass('d-none');
+        $error.addClass('d-none');
+        $content.removeClass('d-none');
+      } else {
+        // Show error message
+        $loading.addClass('d-none');
+        $error.removeClass('d-none');
+        $content.addClass('d-none');
+      }
+    },
+    error: function() {
+      // Show error message
+      $loading.addClass('d-none');
+      $error.removeClass('d-none');
+      $content.addClass('d-none');
+    }
+  });
+}
+
+// Handle showing picture cards for collectible decks
+$('#customizeModal').on('click', '.show-picture-cards', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const $button = $(this);
+  const $preview = $button.siblings('.picture-cards-preview');
+  const deckPath = $button.data('deck-path');
+  
+  if ($preview.is(':visible')) {
+    // Hide the preview
+    $preview.slideUp(300);
+    $button.text('View Cards');
+    return;
+  }
+  
+  // Check if already loaded
+  if ($preview.children().length > 0) {
+    $preview.slideDown(300);
+    $button.text('Hide Cards');
+    return;
+  }
+  
+  // Load picture cards async
+  $button.text('Loading...');
+  const suits = ['heart', 'spade', 'diamond', 'club'];
+  const cards = [11, 12, 13]; // Jack, Queen, King
+  
+  let pictureCardsHtml = '<div class="d-flex justify-content-center flex-wrap mt-2" style="gap: 5px;">';
+  
+  suits.forEach(suit => {
+    cards.forEach(card => {
+      pictureCardsHtml += `
+        <img src="https://solitaired.com/custom-card-images/${deckPath}/${suit}_${card}.png" 
+             alt="${suit} ${card}" class="img-fluid picture-card-hover" style="height: 60px; transition: transform 0.2s ease; cursor: pointer;"
+             onerror="this.style.display='none'"
+             onmouseover="this.style.transform='scale(3)'; this.style.zIndex='9999'; this.style.position='relative';"
+             onmouseout="this.style.transform='scale(1)'; this.style.zIndex='auto'; this.style.position='static';">
+      `;
+    });
+  });
+  
+  pictureCardsHtml += '</div>';
+  
+  $preview.html(pictureCardsHtml);
+  $preview.slideDown(300);
+  $button.text('Hide Cards');
+});
+
+function populateCustomModal() {
+  let customDecks = [
+    {'id': 'style-classic-2', name: 'Original', factorHeight: 1.45},
+    {'id': 'style-classic-mobile-new', name: 'Simple Classic', factorHeight: 1.45},
+    {'id': 'suit-shapes', name: 'Simple Sans-Serif', factorHeight: 1.55 },
+    {'id': 'jones-color-red', name: 'Jones Playing Cards<br>(Standard Color - redback)', factorHeight: 1.40},
+    {'id': 'jones-color-blue', name: 'Jones Playing Cards<br>(Standard Color - blueback)', factorHeight: 1.40},
+    {'id': 'jones-ghost-red', name: 'Jones Playing Cards<br>(Standard Ghost - redback)', factorHeight: 1.40},
+    {'id': 'jones-ghost-blue', name: 'Jones Playing Cards<br>(Standard Ghost - blueback)', factorHeight: 1.40},
+    {'id': 'elegant-cards', name: 'Elegant', factorHeight: 1.52},
+    {'id': 'big-numbers', name: 'Big Numbers', factorHeight: 1.48},
+    {'id': 'four-color', name: 'Four Colors', factorHeight: 1.48},
+    {'id': 'cartoon-tarot', name: 'Cartoon Tarot', factorHeight: 1.60},
+    {'id': 'casino-style', name: 'Casino Style', factorHeight: 1.48},
+    {'id': 'classy', name: 'Classy', factorHeight: 1.506},
+    {'id': 'modern-tarot-1', name: 'Modern Tarot', factorHeight: 1.603},
+    {'id': 'pixel-art', name: 'Pixel Art', factorHeight: 1.38},
+    {'id': 'poker-deck', name: 'Poker Style', factorHeight: 1.525},
+    {'id': 'zodiac-1', name: 'Zodiac 1', factorHeight: 1.51},
+    {'id': 'zodiac-2', name: 'Zodiac 2', factorHeight: 1.53},
+    {'id': 'zodiac-black', name: 'Zodiac Black', factorHeight: 1.41},
+    {'id': 'parrots-mpc', name: 'Parrots', factorHeight: 1.35},
+    {'id': 'Art', name: 'Notable Art', factorHeight: 1.45},
+    {'id': 'notablewomenintech', name: 'Notable Women in Computing', factorHeight: 1.45},
+    {'id': 'Cocktails', name: 'Cocktails', factorHeight: 1.45},
+    {'id': '52kards', name: '52Kards Mint', factorHeight: 1.45},
+    {'id': '80s', name: 'The 80s', factorHeight: 1.45},
+    {'id': 'womens-suffrage', name: 'Britannica Women\'s Suffragists', factorHeight: 1.45},
+    {'id': 'Dino', name: 'Dinosaurs', factorHeight: 1.45},
+    {'id': 'American-food', name: 'American Food', factorHeight: 1.45},
+    {'id': 'space-flight', name: 'Who2 - Heroes of Space & Flight', factorHeight: 1.45},
+    {'id': 'k-pop', name: 'K-Pop', factorHeight: 1.45},
+    {'id': 'lemelson-mit', name: 'MIT - Inspiring Inventors', factorHeight: 1.45},
+    {'id': 'civil-rights', name: 'Heroes of the Civil Rights Movement', factorHeight: 1.45},
+    {'id': 'womenofthehall', name: 'Women\'s Hall of Fame', factorHeight: 1.45},
+    {'id': 'cooper-hewitt', name: 'Cooper Hewitt', factorHeight: 1.45},
+    {'id': 'Dog-Deck', name: 'Best Dogs', factorHeight: 1.45},
+    {'id': 'romantic-heroes', name: 'Romantic Heroes', factorHeight: 1.548},
+    {'id': 'Tarot', name: 'Tarot', factorHeight: 1.45},
+    {'id': 'LGBTQ', name: 'Pride', factorHeight: 1.45},
+    {'id': 'expensive-art', name: 'Expensive Art', factorHeight: 1.45},
+    {'id': 'Space', name: 'Space', factorHeight: 1.45},
+    {'id': 'women-in-flight', name: 'Women in Flight', factorHeight: 1.45},
+    {'id': 'aged-deck', name: 'Lower contrast', factorHeight: 1.45},
+    {'id': 'darkmode-1', name: 'Dark Mode 1', factorHeight: 1.45},
+    {'id': 'darkmode', name: 'Dark Mode 2', factorHeight: 1.45}
+  ];
+  
+  customDecks.forEach(function(e) {
+    $('.card-deck-container').append('<div class="col-3 custom-card-deck" id="'+e.id+'" data-factor-height='+e.factorHeight+'><img width="60" src="https://solitaired.com/custom-card-images/'+e.id+'/thumbnails/back_red.png"><img width="60" src="https://solitaired.com/custom-card-images/'+e.id+'/thumbnails/heart_1.png"><br>'+e.name+'</div>');
+  });
+  
+  let customCardBacks = ['back_red', 'modernpattern1', 'modernpattern2', 'modernpattern3', 'modernpattern4', 'modernpattern5', 'modernpattern6', 'modernpattern7', 'modernpattern8', 'pattern1', 'pattern2', 'pattern3', 'pattern4', 'pattern5', 'pattern6', , 'fleur-de-lis', 'floral-pattern', 'floral-pattern2', 'monsters', 'nature2', 'nature3', 'birds1', 'cat1', 'cat2', 'cat3', 'dog1', 'dog2', 'dog3', 'flowers1', 'funnydog', 'happy-lion', 'kangaroo'];
+  customCardBacks.forEach(function(e) {
+    $('.card-back-container').append('<span class="custom-card-back"><img width="60" id="'+e+'" src="https://solitaired.com/custom-card-images/solitaired-custom-card-backs/thumbnails/'+e+'.png"></span>');
+  });    
+  
+  let customThemes = [
+    {'id':'theme-default', name: 'Default'},
+    {'id':'theme-floating-gardens', name: 'Floating Gardens'},
+    {'id':'theme-magic-forest', name: 'Magic Forest'},
+    {'id':'theme-celestial-gardens', name: 'Celestial Greenhouse'},
+    {'id':'theme-quiet-jungle', name: 'Quiet Jungle'},
+    {'id':'theme-interstellar-library', name: 'Interstellar Library'},
+    {'id':'theme-victorian-cat', name: 'Victorian Cat'},
+    {'id':'theme-titan-lakes', name: 'Titan Lakes'},
+    {'id':'theme-luminous-lagoon', name: 'Luminous Lagoon'},
+    {'id':'theme-cloud-island', name: 'Cloud Island'},
+
+  ];
+
+  customThemes.forEach(function(e) {
+    $('.theme-container').append('<div class="col-md-3 col-sm-6 custom-theme" id="'+e.id+'" data-factor-height="1.45"><img width="100" src="https://solitaired.com/custom-card-images/'+e.id+'/thumbnails/bg.png"><img class="custom-theme-card" width="30" src="https://solitaired.com/custom-card-images/'+e.id+'/thumbnails/back_red.png"><br>'+e.name+'</div>');
+  });
+
+
+
+  $('.credits').append('<p class="mr-2 small text-muted">Playing Card decks in collaboration with <a href="https://seaofpain.com/PLAYING%20CARDS.html" rel="nofollow noopener noreferrer" target="_blank">Sea of Pain Fine Art Productions</a> (Jones Playing Cards); Cooper Hewitt (Cooper Hewitt deck); <a href="http://www.notabletechnicalwomen.org/" rel="nofollow noopener noreferrer">Notable Women in Computing Project</a> (Notable Women deck); <a rel="nofollow noopener noreferrer" href="https://www.kickstarter.com/projects/gunplatop/romantic-heroes">Romantic Heroes</a>. Card backs courtesy of <a href="https://unsplash.com/" rel="nofollow noopener noreferrer" target="_blank">Unsplash</a> and <a href="https://freevector.com/" rel="nofollow noopener noreferrer" target="_blank"> freevector.com</a>.</p>');
+}
+
+//- Handle selection of custom card backs
+$('#customizeModal').on('click', '.custom-card-back', async function(e) {
+  let img = $(this).find('img').eq(0).attr('id');
+  $('.custom-card-back img, .custom-card-deck, .custom-theme').removeClass('cardBackSelected');
+  $('#'+img).addClass('cardBackSelected');
+
+  let customizeFactorHeight = 1.45;
+  $.post('/settings/save', {
+    'cardBack': img,
+    'factorHeight': customizeFactorHeight
+  }, async function(resp) {
+      factorHeight = customizeFactorHeight;
+      cardBack = "https://solitaired.com/custom-card-images/solitaired-custom-card-backs/"+img+".png";
+      if (typeof customize !== 'undefined') {
+        // Wait for the card back to load before continuing
+        await customize.customizeCardBack(cardBack, true);
+        customize.updateDesignThumbnail();
+      } else {
+        drawDeck(false);
+        recalculate_sizes();
+        replaceCardBack(cardBack, true);
+      }
+  });
+});
+
+/**
+* Handle selection of custom themes
+*/
+$('#customizeModal').on('click', '.custom-theme', function(e) {
+  let themeId = $(this).attr('id');
+  $('.custom-card-back img, .custom-card-deck, .custom-theme').removeClass('cardBackSelected');
+  $(this).addClass('cardBackSelected');
+  let cardDeck = 'style-classic-2';
+  let customizeFactorHeight = 1.45;
+  $.post('/settings/save', {
+    'cardBack': "back_red",
+    'cardDeck': cardDeck,
+    'backgroundImage': themeId,
+    'factorHeight': customizeFactorHeight
+  }, async function(resp) {
+      imageFolder = "https://solitaired.com/custom-card-images/"+cardDeck;
+      factorHeight = customizeFactorHeight;
+      cardBackPath = "https://solitaired.com/custom-card-images/"+themeId+"/back_red.png";
+      themeBgPath = "https://solitaired.com/custom-card-images/"+themeId+"/bg.png";
+      if (typeof customize !== 'undefined') {
+        // Wait for the card back to load before continuing
+        await customize.customizeCardBack(cardBackPath, true);
+        customize.changeBackgroundImage(themeBgPath);
+        customize.updateDesignThumbnail();
+      } else {
+        drawDeck(false);
+        recalculate_sizes();
+        replaceCardBack(cardBackPath, true);
+      }
+  });
+});
+
+/**
+* Handle selection of custom card decks (front and back)
+*/
+$('#customizeModal').on('click', '.custom-card-deck', function(e) {
+  let id = $(this).attr('id');
+  let fh = $(this).data('factor-height');
+
+  let img = $(this).find('img').eq(0).attr('id');
+  $('.custom-card-back img, .custom-card-deck, .custom-theme').removeClass('cardBackSelected');
+  $('#'+id).addClass('cardBackSelected');
+
+  $.post('/settings/save', {
+    'cardDeck': id,
+    'factorHeight': fh
+  }, async function(resp) {
+      imageFolder = "https://solitaired.com/custom-card-images/"+id;
+
+      if (typeof customize !== 'undefined') {
+        customize.updateCardFactors('height', fh);
+        // Clear cardDeck and cardBack AFTER loading new images to prevent race conditions
+        // Wait for images to load before clearing the old ones
+        await customize.redrawImages();
+        cardDeck = false;
+        cardBack = false;
+        customize.updateDesignThumbnail();
+      } else {
+        factorHeight = fh;
+        drawDeck(false);
+        cardBack = '';
+        recalculate_sizes();
+      }
+
+      // Show success message for all decks
+      if ($(e.currentTarget).hasClass('collectible-deck')) {
+        const successMsg = $('<div class="alert alert-success mt-2" role="alert">Deck applied successfully!</div>');
+        $(e.currentTarget).closest('.card-body').append(successMsg);
+        setTimeout(() => successMsg.fadeOut('slow', function() { $(this).remove(); }), 2000);
+      }
+  });
+});
+
+/**
+* Handle selection of background color
+*/
+document.getElementById('colorPicker').addEventListener("change", watchColorPicker, false);
+function watchColorPicker(event) {
+  $.post('/settings/save', {
+    'bgColor': event.target.value
+  }, function(resp) {
+    let felt = event.target.value;
+
+    $('.game_container').css({
+      backgroundColor: felt,
+      backgroundImage: "url(/images/site-backgrounds/classy-fabric.png)"
+    });
+
+    
+    if (typeof customize !== 'undefined') {
+      window.requestAnimationFrame(customize.drawGame);
+    } else {
+      window.requestAnimationFrame(drawGame);
+    }
+    
+  });
+}
+$('#resetColor').on('click', function() {
+  let green = '#245324';
+  $('#colorPicker').val(green);
+  watchColorPicker({target: {value: green}});
+
+});
+
+
+
+$('#customizeModal').on('show.bs.modal', function (e) {
+  if ($('.custom-card-back').length == 0) {
+    populateCustomModal();
+  }
+
+  try {
+    let color = $('.game_container').css('backgroundColor');
+    //required because jQuery returns an rgb.
+    let hexCode = "#"+$.map(color.match(/\b(\d+)\b/g),function(digit){
+        return ('0' + parseInt(digit).toString(16)).slice(-2)
+      }).join('');
+
+    $('#colorPicker').val(hexCode);
+  } catch (e) {}
+});
+
+$('.open-premium-modal').on('click', function() {
+  $('#customizeModal').modal('hide');
+  $('#premiumModal').modal('show');
+});</script><div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="settingsModalLabel">Settings</h4><button class="close" type="button" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="row"><div class="col-8 border-right"><div class="row mb-3"><div class="col-sm-6"><label for="customizeSwitch">Change Design</label></div><div class="col-sm-6 text-right"><button class="btn btn-sm btn-block btn-outline-primary hide-offline" id="customizeLink" data-label="customize" data-toggle="modal" data-target="#customizeModal" data-dismiss="modal"> Change Design<img class="ml-1" id="customizeDesignThumbnail" src="/images/style-classic-2/back_red.png" height="20"></button></div></div><div class="row mb-3 d-none" id="settingsActiveChallengeRow"><div class="col mx-1 bg-light rounded"><small><span id="settingsActiveChallengeText"></span><a class="leave-btn text-danger font-weight-bold ml-1" id="settingsLeaveChallengeLink" href="#" role="button">Click here to go back to the original theme.</a></small></div></div><div class="row"><div class="col-sm-6"><label for="autoplaySwitch">Autoplay</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input" id="autoplaySwitch" type="checkbox" checked><label class="custom-control-label autoplay-toggle disable-autoplay" for="autoplaySwitch"></label></div></div></div><div class="row mb-3 text-secondary"><div class="col small">Moves cards just by clicking.</div></div><div class="row android-only"><div class="col-sm-6"><label for="autohintSwitch">Auto hints</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input" id="autohintSwitch" type="checkbox"><label class="custom-control-label autohint-toggle" for="autohintSwitch"></label></div></div></div><div class="row android-only mb-3 text-secondary"><div class="col small">Automatically get hints if you're stuck.</div></div><div class="row"><div class="col-sm-6"><label for="audioSwitch">Sound effects</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input" id="audioSwitch" type="checkbox"><label class="custom-control-label audio-toggle audio-toggle-off" for="audioSwitch"></label></div></div></div><div class="row mb-3 text-secondary"><div class="col small">Play sound effects during game.</div></div><div class="row"><div class="col-sm-6"><label for="animationsSwitch">Foundation splash</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input" id="animationsSwitch" type="checkbox" checked><label class="custom-control-label animations-toggle-off" id="animations-toggle" for="animationsSwitch"></label></div></div></div><div class="row mb-3 text-secondary"><div class="col small">Animate foundation moves.</div></div><div class="row"><div class="col-sm-6"><label for="tableauMagnificationSwitch">Long tableau visibility</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input" id="tableauMagnificationSwitch" type="checkbox" checked><label class="custom-control-label" for="tableauMagnificationSwitch"></label></div></div></div><div class="row mb-3 text-secondary"><div class="col small">See cards more easily on long tableau piles.</div></div><div class="row"><div class="col-sm-6"><label for="handmodeSwitch">Toggle Hand</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input" id="handmodeSwitch" type="checkbox"><label class="custom-control-label" for="handmodeSwitch"></label></div></div></div><div class="row mb-3 text-secondary"><div class="col small">Flip right or left handedness</div></div><div class="row"><div class="col-sm-6"><label for="autocompleteSwitch">Auto finish</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input disable-autocomplete" id="autocompleteSwitch" type="checkbox" checked><label class="custom-control-label" for="autocompleteSwitch"></label></div></div></div><div class="row mb-3 text-secondary"><div class="col small">Finish game once tableau is revealed.</div></div><div class="row"><div class="col-sm-6"><label for="holidaysSwitch">Holiday Themes</label></div><div class="col-sm-6 text-right"><div class="custom-control custom-switch"><input class="custom-control-input disable-holidays" id="holidaysSwitch" type="checkbox" checked><label class="custom-control-label" for="holidaysSwitch"></label></div></div></div><div class="row mb-3 text-secondary"><div class="col small">Card backs change based on certain holidays</div></div><div class="row" id="card-resize-container" style="display: none;"><div class="col-sm-6"><span id="card-resize-label"><span>Zoom:</span><span class="ml-1" id="card-resize-value">100%</span></span></div><div class="col-sm-6 text-right"><span class="btn btn-sm btn-outline-secondary card-resize-button" id="card-resize-smaller">-</span><span class="btn btn-sm btn-outline-secondary card-resize-button ml-1" id="card-resize-larger">+</span></div></div></div><div class="col-4"><div class="row mb-3"><div class="col"><button class="btn btn-sm btn-block btn-outline-primary show" id="fullscreenBtn" data-label="fullscreen">Fullscreen</button></div></div><div class="hide-offline"><div class="row mb-3"><div class="col"><button class="btn btn-sm btn-block btn-outline-primary" id="helpLink" data-label="help" data-toggle="modal" data-target="#helpModal" data-dismiss="modal">Rules</button></div></div><div class="row mb-3"><div class="col"><a class="btn btn-sm btn-block btn-outline-primary show" id="leaderboardBtn" data-label="leaderboard" target="_blank" href="/leaderboard" data-dismiss="modal">Leaderboard</a></div></div><div class="row mb-3"><div class="col"><button class="btn btn-sm btn-block btn-outline-primary" id="subscribeButtonMobile" data-label="remove-ads-button-mobile" data-dismiss="modal">Remove Advertising</button></div></div><div class="row mb-3"><div class="col"><button class="btn btn-sm btn-block btn-outline-danger show reset-stats" data-label="reset-stats">Reset stats</button></div></div></div></div></div></div><div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button></div></div></div></div><footer class="m-5"><hr class="mb-4"><div class="row"><div class="col"><div class="row"><div class="col-sm-12 col-md mb-3"><a href="/about">About us</a></div><div class="col-sm-12 col-md mb-3"><a href="/privacy">Privacy policy</a></div><div class="col-sm-12 col-md mb-3"><a href="/terms">Terms of service</a></div><div class="col-sm-12 col-md mb-3"><a href="/cookie-policy">Cookie policy &amp; <br> Do not sell my info</a></div><div class="col-sm-12 col-md mb-3"><span onclick="loadContactModal()" style="cursor:pointer">Contact us</span></div><div class="col-sm-12 col-md mb-3"><a href="javascript:window.confiant.services().adReporter()">Confiant</a></div><div class="col-sm-12 col-md mb-3"><div class="btn-group dropup"><button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="mr-1" src="/images/flags/lang_en.png" alt="en" width="20" height="20"> English</button><div class="dropdown-menu language-footer-dropdown"><a class="dropdown-item" href="/es/solitario-spider"><img class="mr-1" src="/images/flags/lang_es.png" alt="es" width="20" height="20"> Español</a><a class="dropdown-item" href="/fr/spider-solitaire"><img class="mr-1" src="/images/flags/lang_fr.png" alt="fr" width="20" height="20"> Français</a><a class="dropdown-item" href="/de/spider-solitaire"><img class="mr-1" src="/images/flags/lang_de.png" alt="de" width="20" height="20"> Deutsch</a><a class="dropdown-item" href="/it/spider-solitaire"><img class="mr-1" src="/images/flags/lang_it.png" alt="it" width="20" height="20"> Italiano</a><a class="dropdown-item" href="/pt/spider-solitaire"><img class="mr-1" src="/images/flags/lang_pt.png" alt="pt" width="20" height="20"> Português</a><a class="dropdown-item" href="/el/spider-solitaire"><img class="mr-1" src="/images/flags/lang_el.png" alt="el" width="20" height="20"> Ελληνικά</a><a class="dropdown-item" href="/ja/spider-solitaire"><img class="mr-1" src="/images/flags/lang_ja.png" alt="ja" width="20" height="20"> 日本語</a><a class="dropdown-item" href="/nl/spider-solitaire"><img class="mr-1" src="/images/flags/lang_nl.png" alt="nl" width="20" height="20"> Nederlands</a><a class="dropdown-item" href="/pl/spider-solitaire"><img class="mr-1" src="/images/flags/lang_pl.png" alt="pl" width="20" height="20"> Polski</a><a class="dropdown-item" href="/ro/spider-solitaire"><img class="mr-1" src="/images/flags/lang_ro.png" alt="ro" width="20" height="20"> Română</a><a class="dropdown-item" href="/tr/spider-solitaire"><img class="mr-1" src="/images/flags/lang_tr.png" alt="tr" width="20" height="20"> Türkçe</a><a class="dropdown-item" href="/hi/spider-solitaire"><img class="mr-1" src="/images/flags/lang_hi.png" alt="hi" width="20" height="20"> हिन्दी</a><a class="dropdown-item" href="/sk/spider-solitaire"><img class="mr-1" src="/images/flags/lang_sk.png" alt="sk" width="20" height="20"> Slovenčina</a><a class="dropdown-item" href="/sr/spider-solitaire"><img class="mr-1" src="/images/flags/lang_sr.png" alt="sr" width="20" height="20"> Srpski</a><a class="dropdown-item" href="/sv/spider-solitaire"><img class="mr-1" src="/images/flags/lang_sv.png" alt="sv" width="20" height="20"> Svenska</a><a class="dropdown-item" href="/da/spider-solitaire"><img class="mr-1" src="/images/flags/lang_da.png" alt="da" width="20" height="20"> Dansk</a><a class="dropdown-item" href="/fi/spider-solitaire"><img class="mr-1" src="/images/flags/lang_fi.png" alt="fi" width="20" height="20"> Finnish</a><a class="dropdown-item" href="/no/spider-solitaire"><img class="mr-1" src="/images/flags/lang_no.png" alt="no" width="20" height="20"> Norsk</a><a class="dropdown-item" href="/cs/spider-solitaire"><img class="mr-1" src="/images/flags/lang_cs.png" alt="cs" width="20" height="20"> Čeština</a><a class="dropdown-item" href="/hu/spider-solitaire"><img class="mr-1" src="/images/flags/lang_hu.png" alt="hu" width="20" height="20"> Magyar</a><a class="dropdown-item" href="/ko/spider-solitaire"><img class="mr-1" src="/images/flags/lang_ko.png" alt="ko" width="20" height="20"> 한국어</a></div></div></div></div></div></div><hr class="mb-4"><div class="row"><div class="col mb-2"><span class="text-black-50">&nbsp;&nbsp;&copy;2026. Solitaired&trade; is a trademark of Unwind Media</span></div><div class="col text-right"><a class="mr-1 mb-1" target="_blank" href="https://www.tiktok.com/@solitairedapp"><img loading="lazy" src="/images/social-media/tiktok.png" height="32" width="32" alt="Solitaired TikTok Page"></a><a class="mr-1 mb-1" target="_blank" href="https://www.facebook.com/solitairedapp"><img loading="lazy" src="/images/social-media/facebook.png" height="32" width="32" alt="Solitaired Facebook Page"></a><a class="mr-1 mb-1" target="_blank" href="https://twitter.com/solitairedapp"><img loading="lazy" src="/images/social-media/twitter.png" height="32" width="32" alt="Solitaired Twitter"></a><a class="mr-1 mb-1" target="_blank" href="https://vimeo.com/solitaired"><img loading="lazy" src="/images/social-media/vimeo.png" height="32" width="32" alt="Solitaired Vimeo Channel"></a><a target="_blank" href="https://play.google.com/store/apps/details?id=solitaired.com.app&amp;hl=en_US&amp;gl=US"><img loading="lazy" src="/images/play-android.png" width="100" height="30" alt="Solitaired Android App"></a></div></div></footer></div><div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"><div class="modal-dialog" role="document" style="true"><div class="modal-content"><div class="text-right m-2"><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"></div></div></div></div><div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true"><div class="modal-dialog" role="document" style="true"><div class="modal-content"><button class="close" type="button" data-dismiss="modal" aria-label="Close" style="margin-top: -25px; margin-right: 10px; align-self: end; position: relative; top: 30px; z-index: 1000;"><span aria-hidden="true">&times;</span></button><div class="modal-body"></div></div></div></div><div class="modal fade" id="statsModal" tabindex="-1" role="dialog" aria-labelledby="statsModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="statsModalLabel">Trophy Case &amp; Stats</h5><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="container mt-4"></div><script>$('#statsModal').on('shown.bs.modal', function (e) {  
+  $.post('/high-scores/stats-personal', {}, function(resp) {
+    $('#statsModal .container').html(resp);
+  });
+});</script></div></div></div></div><div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true"><div class="modal-lg modal-dialog" role="document"><div class="modal-content bg-transparent" style="border: none;"><div class="modal-body"></div></div></div></div><div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content bg-light"><div class="modal-header"><h5 class="modal-title" id="bookmarkModalLabel">Enjoying the site?</h5><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><p>Press <strong>Control + D</strong> on Windows or <strong>⌘ + D</strong> on Mac to bookmark us!</p></div><div class="modal-footer"><button class="btn btn-success" type="button" data-dismiss="modal">OK</button></div></div></div></div><div class="modal fade" id="userEmailModal" tabindex="-1" role="dialog" aria-labelledby="userEmailModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="userEmailModalLabel">One more thing...</h5><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"></div></div></div></div><div class="modal" id="choose-name" data-backdrop="static" data-keyboard="false"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header pb-0"><div class="luckiest-guy">Create a username</div></div><div class="modal-body"><input class="form-control" id="playerName" type="text" name="name" autofocus placeholder="Add your username"><div class="small">Your username will appear on our public leaderboards.</div><button class="btn btn-success btn-block mt-2" id="playerNameButton">Play</button><p class="errors" id="choose-name-message" style="display:none"></p></div></div></div></div><div class="modal fade" id="new-game-modal"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header pb-0"><div class="row w-100"><div class="col-1"></div><div class="col"><h3 class="modal-title w-100 text-success text-center">We couldn't find any hints</h3></div><div class="col-1 mr-0"><button class="pr-0 close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div></div></div><div class="modal-body text-center" data-google-interstitial="false"><p>Would you like to start a new game?</p><a class="btn btn-secondary btn-sm moments-button m-1 skip-prevent-accidental-nav" data-label="winnable-only" href="?deal=winnable" rel="nofollow">New game</a><a class="btn btn-secondary btn-sm moments-button mr-1 restart skip-prevent-accidental-nav" data-label="restart-same-game" href="?seed=8n7mtCd0854cSXL3+mOY/Q+8+KVc6VbejQQUir10wsc=" rel="nofollow">Restart</a><div class="btn btn-sm btn-secondary" type="button" data-dismiss="modal" aria-label="Close">Keep playing</div></div></div></div></div><div class="modal fade" id="undo-until-solvable-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header pb-0"><div class="row w-100"><div class="col"><div class="modal-title w-100 text-success text-center">Finding Last Winnable Move</div></div></div></div><div class="modal-body text-center"><div class="undo-until-solvable-status">Analyzing your game...</div></div><div class="modal-footer"><div class="row w-100 justify-content-between"><div class="col-auto"><button class="btn btn-warning" id="cancel-until-solvable-btn" type="button" data-dismiss="modal" aria-label="Close">Cancel</button></div><div class="col-auto"><button class="btn btn-primary" id="close-undo-until-solvable-btn" type="button" data-dismiss="modal" aria-label="Close">Close</button></div></div></div></div></div></div><div class="modal" id="hotkeys-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header pb-0"><div class="row w-100"><div class="col-1"></div><div class="col"><h3 class="modal-title w-100 text-success text-center">Keyboard Shortcuts</h3></div><div class="col-1 mr-0"><button class="pr-0 close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div></div></div><div class="modal-body"><table class="table" border="1" frame="void" rules="rows"><tr><td>Flip stock card</td><td class="text-center text-secondary"><span class="border rounded p-1 px-2">Space</span></td></tr><tr><td>Quickmove (autoplay)</td><td class="text-center text-secondary"><span class="border rounded p-1 px-2">s</span></td></tr><tr><td>Undo</td><td class="text-center text-secondary"><span class="border rounded p-1 px-2">a</span></td></tr><tr><td>Redo</td><td class="text-center text-secondary"><span class="border rounded p-1 px-2">d</span></td></tr><tr><td>Open this keyboard shortcuts menu</td><td class="text-center text-secondary"><span class="border rounded p-1 px-2"> h</span></td></tr></table><div class="btn btn-secondary m-2" type="button" data-dismiss="modal" aria-label="Close">Close</div></div></div></div></div><div class="modal" id="request-login" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Don't Lose Your Stats</h5></div><div class="modal-body"><p>Looks like you aren't logged in. Log back in to claim your stats and trophies.</p></div><div class="modal-footer"><div class="sso-button-container"><div class="g_id_signin" id="google_relogin_button" data-type="standard" data-theme="filled_blue" data-size="large" style="height: 40px; width: 200px; margin: 0 auto; display:none"></div></div><button class="btn btn-success" id="request-login-login">Log In</button><button class="btn btn-secondary" id="request-login-nothanks" type="button" data-dismiss="modal" aria-label="Close">No Thanks</button></div></div></div></div><div class="modal fade" id="challengesModal" tabindex="-1" role="dialog" aria-labelledby="challengesModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="challengesModalLabel">Challenges & Badges</h4><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><ul class="nav nav-tabs mb-3" id="challengesTabs" role="tablist"><li class="nav-item"><a class="nav-link active" id="active-challenges-tab" data-toggle="tab" href="#active-challenges" role="tab" aria-controls="active-challenges" aria-selected="true">Active Challenges</a></li><li class="nav-item"><a class="nav-link" id="my-badges-tab" data-toggle="tab" href="#my-badges" role="tab" aria-controls="my-badges" aria-selected="false">My Badges</a></li><li class="nav-item"><a class="nav-link" id="previous-challenges-tab" data-toggle="tab" href="#previous-challenges" role="tab" aria-controls="previous-challenges" aria-selected="false">Previous Challenges</a></li></ul><div class="tab-content" id="challengesTabContent"><div class="tab-pane fade show active" id="active-challenges" role="tabpanel" aria-labelledby="active-challenges-tab"><div class="text-center challenge-loading" id="challengesLoading"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div><p class="mt-2">Loading challenges...</p></div><div class="text-center challenge-no-content" id="noChallenges"><h5>No Active Challenges</h5><p>No challenges are currently running. Check back soon for new exciting challenges!</p></div><div class="challenge-list" id="challengesList"><div id="challengesContainer"></div></div></div><div class="tab-pane fade" id="my-badges" role="tabpanel" aria-labelledby="my-badges-tab"><div class="text-center challenge-loading" id="badgesLoading"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading badges...</span></div><p class="mt-2">Loading your earned badges...</p></div><div class="text-center challenge-no-content" id="noBadges"><h5>No Badges Yet</h5><p>Complete challenges to earn achievement badges!</p></div><div class="badges-list" id="badgesList"><div class="row" id="badgesContainer"></div></div></div><div class="tab-pane fade" id="previous-challenges" role="tabpanel" aria-labelledby="previous-challenges-tab"><div class="text-center challenge-loading" id="prevChallengesLoading"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div><p class="mt-2">Loading previous challenges...</p></div><div class="text-center challenge-no-content" id="noPrevChallenges"><h5>No Previous Challenges</h5><p>You have no past challenges to show yet.</p></div><div class="challenge-list" id="prevChallengesList"><div id="prevChallengesContainer"></div></div></div></div></div><div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button></div></div></div></div><template id="challengeProgressTemplate"><div class="challenge-item card mb-3"><div class="challenge-bg"><div class="challenge-body card-body"><div class="row"><div class="col-md-8"><h5 class="card-title challenge-name"></h5><p class="card-text challenge-description"></p><small class="challenge-dates"></small></div><div class="col-md-4 text-right"><div class="mt-2"><p><button class="btn btn-block btn-success btn-sm opt-in-btn challenge-opt-in-btn">Join Challenge</button></p><div class="progress-info challenge-progress-info"><div class="progress mb-2 challenge-progress-bar"><div class="progress-bar bg-success" role="progressbar"></div></div><small class="progress-text"></small><small class="completed-badge text-success font-weight-bold challenge-completed-badge"><i class="fas fa-check-circle"></i> Completed!</small></div></div></div></div></div></div></div></template><div class="modal fade" id="accuityModal" tabindex="-1" role="dialog"><style>.accuity-score-section .accuity-indicator {
+    visibility: hidden;
+}
+
+.accuity-score-section.selected {
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important
+}
+
+#accuity-score-section-0 {
+    border-color: #ffc107
+}
+#accuity-score-section-1 {
+    border-color: #bfd6ad
+}
+#accuity-score-section-2 {
+    border-color: #7da65b
+}
+#accuity-score-section-3 {
+    border-color: #4d752d
+}
+#accuity-score-section-4 {
+    border-color: #344d1d
+}
+
+.accuity-score-section.selected .accuity-indicator {
+    visibility: visible;
+}
+.acuity-modal-header {
+    background-color: #245324;
+}
+#accuity-results-sample-text {
+    font-size: 0.8em;
+}
+
+</style><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header justify-content-center align-items-center font-weight-bold text-white acuity-modal-header" style="text-shadow: 1px 1px 2px black;"><div class="text-center"><img class="img-fluid" src="/images/brain.png" alt="Brain" width="50"></div><h4 class="modal-title text-center" style="width:100%; font-size:1.5em; font-weight:900; line-height: 1.1;">Calculate your cognitive score!</h4><button class="close" type="button" data-dismiss="modal" aria-label="Close"></button><span aria-hidden="true">&times;</span></div><div class="modal-body pb-0"><div class="row no-gutters m-3 mt-2 text-secondary" id="accuity-explanation" style="font-weight:700;"><div class="col-12">We worked with UCLA's CRESST group to demonstrate how Solitaire can measure cognitive acuity (<a target="_blank" href="/how-solitaire-can-predict-cognition">See study</a>).</div></div><div class="row no-gutters m-3" style="font-weight:700;"><div class="col-12">Enter your age below to calculate your acuity score.</div></div><form class="mt-4 form-inline justify-content-center"> <div class="form-row mb-3" style="font-size:1.1em; width:100%"><label class="col-4 col-form-label" for="accuityAge" style="vertical-align:middle; font-weight:900;">YOUR AGE:</label><div class="col-8"><div class="input-group shadow-sm"><input class="form-control" id="accuityAge" style="width:100px; font-weight:700" type="number" min="18"></div></div></div><div class="form-row"><div class="offset-4 col-8"><button class="font-weight-bolder btn btn-success" id="accuityScoreCalculate">Calculate</button></div></div></form><div class="alert alert-danger mt-3" id="accuity-error" style="display:none;"><span id="accuity-error-text"></span></div><div class="justify-content-center text-center" id="accuity-results" style="visibility:hidden;"><div class="row"><div class="col-12"> <p id="accuity-results-sample-text">Placeholder</p></div></div><div class="row"><div class="col-12"> <h5 class="font-weight-bolder" style="font-size:30px;"><span id="accuity-results-text"></span><button class="h5 btn btn-lg btn-link" style="font-weight:900" data-toggle="popover" title="About My Score" data-trigger="focus" data-content="This score comes from research on 4,000+ players linking Solitaire performance to cognitive test results. It's age-adjusted to reflect memory and processing speed">( ? )</button></h5></div></div><div class="row justify-content-center" style="line-height:1.5; font-size:.5rem"><div class="accuity-score-section col-2 p-1" id="accuity-score-section-0"><div class="accuity-indicator" style="height:3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17L5 7H19L12 17Z" stroke="black" fill="#ffc107"/></svg>    </div><div class="progress"><div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div></div><div class="accuity-score-section col-2 p-1" id="accuity-score-section-1"><div class="accuity-indicator" style="height:3em; "><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17L5 7H19L12 17Z" stroke="black" fill="#bfd6ad"/></svg></div><div class="progress"><div class="progress-bar" role="progressbar" style="width: 100%; background-color:#bfd6ad" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div></div><div class="accuity-score-section col-2 p-1" id="accuity-score-section-2"> <div class="accuity-indicator" style="height:3em; "><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17L5 7H19L12 17Z" stroke="black" fill="#7da65b"/></svg></div><div class="progress"><div class="progress-bar" role="progressbar" style="width: 100%; background-color:#7da65b" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div></div><div class="accuity-score-section col-2 p-1" id="accuity-score-section-3"> <div class="accuity-indicator" style="height:3em;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17L5 7H19L12 17Z" stroke="black" fill="#4d752d"/></svg></div><div class="progress"><div class="progress-bar" role="progressbar" style="width: 100%; background-color:#4d752d" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div></div><div class="accuity-score-section col-2 p-1" id="accuity-score-section-4"><div class="accuity-indicator" style="height:3em; "><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17L5 7H19L12 17Z" stroke="black" fill="#344d1d"/></svg>                            </div><div class="progress"><div class="progress-bar" role="progressbar" style="width: 100%; background-color:#344d1d" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div></div></div><div class="row mt-2 justify-content-center"><div class="col-12"><p class="font-weight-bold" style="line-height: 1.3;">Play tomorrow's Game of the Day to see if you can improve your performance!</p></div></div></div></div><div class="modal-footer justify-content-between"><button class="btn btn-link" id="accuitySkipForever" data-dismiss="modal" aria-label="Close">Skip Forever</button><button class="btn btn-secondary" id="accuitySkip" data-dismiss="modal" aria-label="Close">Skip</button><button class="btn font-weight-bolder btn-success" id="accuityNextButton" data-dismiss="modal" aria-label="Close" style="display:none;">Continue</button></div></div></div></div><div><div class="modal fade registerModal" id="registerForGoodiesModal"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Sign up for all the goodies!</h5><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><ul><li>Save your stats</li><li>Track your improvement over</li><li>Collect trophies</li><li>Appear on leaderboards</li></ul><div class="row"><div class="col text-center"><div class="emailOnlyRegisterForm"><div class="form-row"><div class="col-8"><input class="form-control" type="email" data-formtype="h5-no-backfill" placeholder="Your email address"></div><div class="col-4"><a class="emailOnlyRegisterFormBtn btn btn-block btn-success restart skip-prevent-accidental-nav" data-regtype="emailOnly" data-formtype="h5-no-backfill" href="#" rel="nofollow">Sign up FREE</a></div></div></div></div></div><div class="row mt-2"><div class="col text-center"><span class="text-secondary small ajaxlink" data-dismiss="modal">Skip</span></div></div></div></div></div></div></div><div class="modal" id="gotdcalendar-modal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><div class="container"><div class="row justify-content-center"><div class="col"><button class="float-right pr-0 close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h3 class="modal-title text-success text-center">Game of the Day Calendar</h3></div></div></div></div><div class="modal-body"><div class="row"><div class="col-12"><div class="alert alert-warning" id="gotd-calendar-warning"></div></div></div><div class="row"><div class="col-12"><div id="gotdcalendar"></div></div></div></div></div></div></div><div id="pause-modal" style="display: none; position: absolute; overflow: scroll;"><div class="gray-background text-white"><h3 class="modal-title text-center luckiest-guy">Game Paused</h3><div class="container text-center"><div id="pause-modal-stats"></div><button class="mt-2 btn btn-success btn-lg luckiest-guy" id="resume-game-button" type="button">Resume Game</button><div class="mt-2" style="padding-top: 30px;"><div id="paused_ad" style="margin: 0 auto;"></div></div></div></div></div><div class="work-mode"><div class="work-mode-btn btn btn-lg font-weight-bold btn-danger">&times;</div></div><script src="/javascripts/dist/main.js?version=1782931082000" defer></script><div id="g_id_onload" data-client_id="256175613642-onl0ufb5d4mjl7dmskllkki02cv0tips.apps.googleusercontent.com" data-auto_prompt="true" data-use_fedcm_for_prompt="true" data-callback="handleGoogleCredentialResponse" data-prompt_parent_id="g_id_onload" data-auto_select="true" style="position: fixed; top: 40px; right: 20px; z-index: 9999;"></div><script>window.addEventListener("gameVars.gameWonEvent", function(event) {
+  try {
+    if (SOLITAIRED_GLOBAL && SOLITAIRED_GLOBAL.isPwa && SOLITAIRED_GLOBAL.isAndroid) {
+      sendEventToAndroid("gameWon");
+    } else {
+      gtag("event", "gameWon", {
+        event_category: "game",
+        event_label: "gameWon",
+        value: 1,
+      });
+    }
+  } catch (e) {}
+});
+
+</script><script src="https://accounts.google.com/gsi/client" defer></script><div class="card border-0" id="facebookOneTap" style=" "><p class="card-header text-white text-center" style="background-color:#1877F2;">Sign in to Solitaired.com with Facebook <button class="pr-0 close" id="facebookOneTapClose" type="button" aria-label="Close"> <span class="text-white" aria-hidden="true">&times</span></button></p><div class="card-body text-center"><p class="card-text">Sign in to appear on the leaderboard and save your stats!</p><div class="fb-login-button" data-width="300" data-scope="email" data-size="large" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="true" data-onlogin="checkFacebookLoginStatus(true);"></div></div><script>$("#facebookOneTapClose").on("click",function() {
+  $("#facebookOneTap").hide();
+});</script></div><script>if (window.SOLITAIRED_GLOBAL && !window.SOLITAIRED_GLOBAL.isPwa) {
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: '868260173585475',
+      autoLogAppEvents : true,
+      xfbml: true,
+      version: 'v18.0',
+      cookie: true
+    });
+    if ( !SOLITAIRED_GLOBAL.loggedInUser && SOLITAIRED_GLOBAL.todayGamesPlayed == 3 ) {
+      var fbModalShown = 0;
+      try {
+        var tmp = parseInt(window.localStorage.getItem('fbModalShown'));
+        //- check if tmp is a Nan
+        if (tmp >0 ) {
+          fbModalShown = tmp;
+        }
+      } catch (e) {
+        fbModalShown = 0;
+        console.log("Error getting fbModalShown", e)
+      }
+      FB.getLoginStatus(function(data){
+        if (fbModalShown < 3 && data && ['connected', 'not_authorized'].indexOf(data.status) > -1) {
+          //- If a user is not logged in and has played 3 games today (set in todayGamesPlayedCookie) and is logged in on facebook., show the Facebook One Tap.
+          window.setTimeout(function(){
+            $('.sidebar-slogan').fadeOut();
+            $("#facebookOneTap").fadeIn();
+
+            //- Hide the modal after 10 seconds if the user hasn't clicked on it.
+            window.setTimeout(function(){
+              $("#facebookOneTap").fadeOut();
+              //- Record that the modal has been shown. Do it inside the 10 second timeout to not count fast pageviews.
+              try {
+                fbModalShown = fbModalShown + 1;
+                window.localStorage.setItem('fbModalShown', fbModalShown);
+              } catch (e) {
+                console.log("Error setting fbModalShown", e)
+              }
+            }, 10000)
+
+          }, 1000)
+        }
+      })
+    }
+  };
+}</script><script>window.auid = "aa8d522f-f886-4768-a900-3a61268ac168"
+</script><div class="soli-toast toast hide" id="game-won-toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000"><div class="toast-body"><div>✅ &nbsp; Game won! Finishing &hellip;</div><button class="btn btn-close text-white" type="button" data-dismiss="toast" aria-label="Close">&times;</button></div></div></body></html>

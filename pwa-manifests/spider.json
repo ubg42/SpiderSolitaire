@@ -1,0 +1,38 @@
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "Spider Challenge",
+  "short_name": "Spider Challenge",
+  "scope": "/spider-solitaire?pwa=true",
+  "display": "standalone",
+  "start_url": "https://solitaired.com/spider-solitaire",
+  "background_color": "#000000",
+  "theme_color": "transparent",
+  "description": "Play Spider Solitaire, the classic four suit version (one and two suit options available). 100% free. No download required.",
+  "orientation": "landscape",
+  "related_applications": [],
+  "prefer_related_applications": "false",
+  "icons": [
+    {
+      "src": "/images/favicons/favicon.ico",
+      "sizes": "48x48 32x32 16x16"
+    },
+    {
+      "src": "/images/favicons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "url": "https://solitaired.com/spider-solitaire?pwa=true",
+  "screenshots": []
+}
